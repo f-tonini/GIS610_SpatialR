@@ -1,0 +1,154 @@
+---
+title: "Introduction to R in GIS"
+author: "Francesco Tonini"
+date: "August 24, 2015"
+output: html_document
+---
+
+This lecture will walk you through some basic R programming concepts needed to better understand its powerful sintax for data analysis and visualization. The focus of the lecture is ultimately the use of R as a GIS tool for basic I/O operations as well as visualization of spatial data. *We acknowledge that the materials provided here do not by any means intend to be comprehensive nor attempt to cover all concepts that would otherwise require a semester-long course*. Because this repository is open-source, please feel free to use it as you deem appropriate and I would greatly appreciate any feedback to improve and build upon it. If you are familiar with version control concepts, such as Git and Github, you are more than welcome to 'fork' this repository on your own account and send a 'pull request' to me if you wish to add/edit any of the scripts.
+
+#Basic R: quick refresheR 
+
+This section goes through some basic R commands needed to work with different kinds of data. The purpose is to provide a quick refreshe-R (forgive the horrible 'R' joke) so you can better follow the coming sections, where we dig into more advanced concepts of R as a GIS tool.
+
+###Basic Commands
+
+You can use R as a calculator. The main symbols you may find useful to memorize are the following: +, -, *, /, ^
+
+```{r}
+#addition
+4 + 3 
+#subtraction
+4 - 3
+#multiplication
+4 * 3
+#division
+4 / 3
+#power
+4 ^ 3
+#square root
+sqrt(4)
+```
+
+You can assign values to R object (variables) using the assignment operator
+```{r}
+my_numeric <- 6 
+class(my_numeric)
+
+my_character <- "Hello World"
+class(my_character)
+
+my_logical <- TRUE
+class(my_logical)
+
+#print the value of `var` on console using the print() statement
+print(my_character)
+
+#concatenate strings
+paste("Hello", "World", sep=" ")
+#or
+paste0("Hello", "World")
+
+#operations with variables
+var1 <- 4
+var2 <- 6
+var3 <- var1 + var2
+var3
+```
+
+###Vectors
+
+One of the biggest strenghts of the R language are **vectors**, which are one-dimension arrays that can hold numeric data, character data, or logical data. 
+
+```{r}
+#numeric vectors
+num_vec <- c(1, 10, 100)
+num_vec
+num_vec <- 1:10
+num_vec
+
+#character vectors
+char_vec <- c("Hello", "World", "!")
+char_vec
+
+#logical (boolean) vectors
+bool_vec <- c(TRUE, FALSE, FALSE)
+bool_vec
+
+#operations between vectors
+num_vec1 <- c(1, 10, 100)
+num_vec2 <- c(10, 50, 85)
+num_vec1 - num_vec2
+
+#operations within vectors
+sum(num_vec1)
+
+#assign names to vectors
+names(num_vec1) <- c("First", "Second", "Third")
+num_vec1
+```
+
+Vectors can also be sliced by subsetting only the elements you are interested in. There are a few ways to accomplish that, but here I will use some of the most common ones.
+
+```{r}
+#use the [ ] brackets to subset vectors:
+# 1) by specific element number 
+num_vec1[2]
+num_vec1[c(1,3)]
+# 2) by name
+num_vec1["Second"]
+# 3) by logical comparison
+num_vec1[num_vec1 < 15]
+num_vec1[num_vec1 == 10]
+
+num_vec2
+num_vec1
+num_vec2 %in% num_vec1 #contained in?
+num_vec2[num_vec2 %in% num_vec1]
+```
+
+###Matrices
+
+Matrices are nothing more than two dimensional arrays (vectors), thus the selection operators shown above apply here in a very similar way. In R, you can construct a matrix with the `matrix()` statement.
+
+```{r}
+m <- matrix(1:16, byrow = TRUE, nrow = 4)
+m
+
+#check matrix dimensions
+dim(m)
+
+#construct matrix from two or more vectors
+num_vec1 <- 1:10
+num_vec2 <- 5:14
+
+#by columns
+cbind(num_vec1, num_vec2)
+
+#by rows
+rbind(num_vec1, num_vec2)
+
+#adding a row
+rbind(m, 1:4) 
+
+#matrix selection:
+# 1) single element
+m[1,2]
+# 2) multiple elements
+m[1:3, 1:4]
+m[1:3, ]
+m[ , 1:3]
+
+#arithmetic with matrices
+m1 <- matrix(1:16, byrow = TRUE, nrow = 4)
+m1
+m2 <- matrix(8:31, byrow = TRUE, nrow = 4)
+m2
+#matrix product
+m1 %*% m2
+
+#matrix sum (must be SAME DIMENSIONS!)
+m1 + m1
+```
+
+###Data Frames
