@@ -1,17 +1,19 @@
 ---
-title: "Introduction to R in GIS"
+title: "GIS610: Introduction to R in GIS"
 author: "Francesco Tonini"
-date: "August 24, 2015"
+date: "October 1, 2015"
 output: html_document
 ---
 
-This lecture will walk you through some basic R programming concepts needed to better understand its powerful sintax for data analysis and visualization. The focus of the lecture is ultimately the use of R as a GIS tool for basic I/O operations as well as visualization of spatial data. *We acknowledge that the materials provided here do not by any means intend to be comprehensive nor attempt to cover all concepts that would otherwise require a semester-long course*. Because this repository is open-source, please feel free to use it as you deem appropriate and I would greatly appreciate any feedback to improve and build upon it. If you are familiar with version control concepts, such as Git and Github, you are more than welcome to 'fork' this repository on your own account and send a 'pull request' to me if you wish to add/edit any of the scripts.
+This lecture will walk you through some basic R programming concepts needed to better understand its powerful sintax for data analysis and visualization. The focus of the lecture is ultimately the use of R as a GIS tool for basic I/O operations as well as visualization of spatial data. *We acknowledge that the materials provided here do not by any means intend to be comprehensive nor attempt to cover all concepts that would otherwise require a semester-long course*. The sections and code chunks found here are made of a mix of different internet and book resources. Because this repository is open-source, please feel free to use it as you deem appropriate and I would greatly appreciate any feedback to improve and build upon it. If you are familiar with version control concepts, such as Git and Github, you are more than welcome to 'fork' this repository on your own account and send a 'pull request' to me if you wish to add/edit any of the scripts.
 
 #Basic R: quick refresheR 
 
 This section goes through some basic R commands needed to work with different kinds of data. The purpose is to provide a quick refreshe-R (forgive the horrible 'R' joke) so you can better follow the coming sections, where we dig into more advanced concepts of R as a GIS tool.
 
-###Basic Commands
+###Basics of `R`
+
+####Simple Math
 
 You can use R as a calculator. The main symbols you may find useful to memorize are the following: +, -, *, /, ^
 
@@ -29,20 +31,27 @@ You can use R as a calculator. The main symbols you may find useful to memorize 
 #square root
 sqrt(4)
 ```
+####Variables
 
-You can assign values to R object (variables) using the assignment operator
+You can assign values to R object (variables) using assignment operators. Variable names can contain any combination of alphanumeric characters along with periods (.) and underscores (_). However, they *CANNOT* start with a number or an underscore. 
+
 ```{r}
-my_numeric <- 6 
-class(my_numeric)
+var <- 6 
+var
+var = 6
+var
 
-my_character <- "Hello World"
-class(my_character)
+#the assignment operator can also point in the other direction
+3 -> var
+var
 
-my_logical <- TRUE
-class(my_logical)
+#you can also use multiple assignment
+a <- b <- 7
+a
+b
 
 #print the value of `var` on console using the print() statement
-print(my_character)
+print(a)
 
 #concatenate strings
 paste("Hello", "World", sep=" ")
@@ -54,6 +63,70 @@ var1 <- 4
 var2 <- 6
 var3 <- var1 + var2
 var3
+
+#remove variables from the current session
+ls()
+rm(var3)
+ls()
+```
+
+####Data Types
+
+There are several data types in `R` that store different kinds of data: the main ones are `numeric`, `character` (string), and `logical` (TRUE/FALSE)
+
+```{r}
+##NUMERIC:
+x <- 5
+class(x)
+
+#let's ask whether a variable is numeric
+is.numeric(x)
+
+#by default the numeric value is stores as double (float) precision.
+#to specify a value is an integer, you can use the letter `L` after the number
+x <- 5L
+x
+is.integer(x)
+
+##CHARACTER:
+##R has two primary ways of handling character data: character and factor
+x <- "data"
+x
+y <- factor("data")
+y
+#how many characters does it contain? Does NOT work with FACTOR data
+nchar(x)
+
+##DATES:
+##There are several ways to deal with dates and times in R. Here, we will use base R but keep
+##in mind there are specific packages tailored to this type of data (for example `lubridate` and `chron`)
+date1 <- as.Date("2012-06-28")
+date1
+#let's look at its class
+class(date1)
+#what happens if we transform it to numeric?
+as.numeric(date1)
+
+#object of class POSIXct
+date2 <- as.POSIXct("2012-06-28 17:42")
+date2
+class(date2)
+
+##LOGICAL:
+#numerically, TRUE corresponds to 1 and FALSE to 0. So something like TRUE * 5 = 5
+TRUE * 5
+FALSE * 5
+k <- TRUE
+class(k)
+is.logical(k)
+
+#logicals can result from comparing two numbers, or characters
+2 == 3
+#does 2 NOT equal three (is 2 different than three?)
+2 != 3
+2 < 3
+#with character variables
+"data" < "stats"
 ```
 
 ###Vectors
@@ -107,7 +180,72 @@ num_vec2 %in% num_vec1 #contained in?
 num_vec2[num_vec2 %in% num_vec1]
 ```
 
-###Matrices
+###Calling Functions
+
+Functions are very important in any language because they help making your code easily repeatable. Here we look at a couple of basic examples.
+
+```{r}
+x <- 1:10
+mean(x)
+
+#build you own functions
+Vmean <- function(x){
+  
+  mean(x)
+  #OR m <- mean(x)
+  #return(m) for best practice!
+}
+
+#let's test it
+Vmean(x)
+
+#more complex custom function with default values of some parameters
+powerFun <- function(x, lambda = 2){
+  
+  if(length(x) > 1) stop('x must be a single number')
+  x ^ lambda
+  
+}
+#error
+#powerFun(x)
+#correct!
+powerFun(4)
+```
+
+###Missing Data
+
+`R` has two types of missing data: `NA` and `NULL`. They are similar but they behave differently.
+
+####Type `NA`
+
+`NA` is often seen as just another element of a vector. Other statistical programs use 99 or '-' for missing data.
+
+```{r}
+zNum <- c(1, 5, NA, 8, NA)
+is.na(zNum)
+
+#same for character vectors
+zChar <- c("Hello", NA, "World")
+is.na(zChar)
+```
+
+####Type `NULL`
+
+`NULL` is the absence of anything. It's not exactly a "missing" value, rather its "nothingness". For example, functions can sometimes return `NULL` or their parameters can be `NULL`. Another important difference between `NA` and `NULL` is that the latter cannot exist within a vector (it is not stored in memory) because it is "atomical".
+
+```{r}
+z <- c(8, NULL, 15)
+z
+z <- NULL
+is.null(z)
+
+```
+
+###More Advanced Data Structures
+
+Data may require some more complex storage than simple `vectors`. The most common are `data.frames`, `matrices`, `list`, and `array`.
+
+####Matrices
 
 Matrices are nothing more than two dimensional arrays (vectors), thus the selection operators shown above apply here in a very similar way. In R, you can construct a matrix with the `matrix()` statement.
 
@@ -151,4 +289,99 @@ m1 %*% m2
 m1 + m1
 ```
 
-###Data Frames
+####Data Frames
+
+One of the most useful and common structures used in `R` are `data.frames`. You can think of it similar to Excel spreadsheets with columns and rows. In `R`, each column is a `vector`, each of which MUST be the same length. They can be made of different data types.
+
+```{r}
+x <- 1:5
+y <- sample(c(TRUE, FALSE), 5, replace=T) 
+z <- c("Mark", "Jim", "Laura", "Jessie", "Frank")
+DF <- data.frame(x,y,z)
+DF
+class(DF)
+#a common useful R command to look at data.frames structures is str()
+str(DF)
+#variable names
+names(DF)
+names(DF) <- c("First", "Second", "Third")
+names(DF)[2]
+#row names
+rownames(DF) <- c("One", "Two", "Three", "Four", "Five")
+#nbr. rows and columns
+nrow(DF)
+ncol(DF)
+#check 'head' and 'tail' of a data frame
+head(DF, 3)
+tail(DF, 2)
+#select variable using the $ sign followed by the variable name
+DF$Second
+#OR using the variable name inside the select() command
+DF[ , "Second"]
+#OR using index just like for matrices
+DF[ , 2]
+#without dropping to a vector
+DF[ , 2, drop=FALSE]
+```
+
+####Lists
+
+In some case a "container" needs to hold arbitrary objects that can be either the same kind of varying ones. The same goes for objects with either the same or different length. In `R`, `list` can accomodate for all of the above, as well as storing `data.frames` inside it along with simple `vectors`.
+
+```{r}
+list(1,2,3)
+#single element with 3 numbers
+list(c(1,2,3))
+#mix of vectors and data.frame
+list(DF, 1:10)
+#names of a list
+lst <- list(DF, 1:10) 
+names(lst)
+names(lst) <- c("data.frame", "vector")
+lst
+#access list elements with double square brackets
+lst[[1]]
+#OR using name
+lst[["vector"]]
+#select a variable inside the data frame
+lst[["data.frame"]]$Second
+#check its length
+length(lst)
+#add element to the list
+lst[[3]] <- c("Hello", "world")
+```
+
+####Arrays
+
+In `R`, `arrays` are used as multidimensional `vectors`. Everything inside it MUST be of the same type. Elements inside an `array` are accessed using square brackets. An `array` is defined by three indices: one for the row, the second for the column, and the following ones for outer dimension(s). The main difference between `matrices` and `arrays` in `R` is that the latter can have an arbitrary number of outer dimensions.
+
+```{r}
+myArray <- array(1:12, dim = c(2,3,2))
+myArray
+#subset dimension of interest
+myArray[1, ,1]
+```
+
+#Reading Data in `R`: tables and spatial data 
+
+The most common way to read data into `R` is from CSV (Comma Separated Values) files. There are many other options, such as reading data from a database (e.g. MySQL, MS Access, etc.) or from other software output (e.g. SAS, SPSS, etc.) and many more. We will leave the exploration of all the above up to you. Our main focus will quickly shift to the two main GIS spatial data types: vectors and rasters.
+
+###Reading CSV Files
+
+The most common way to read csv files is using the `read.table` or `read.csv` commands. By default, csv files are read in as `data.frames`. Reading Excel spreadsheets in `R` is not that simple. It would be preferrable to first conver Excel data into csv files before loading data into `R`. However, a number of packages exist to tackle this type of data. The most common being `gdata`, `XLConnect`, `xlsReadWrite`.
+
+```{r}
+myTable <- read.table("./data/plots_umca_infection.csv", stringsAsFactors = FALSE, header=T, sep=',')
+#using read.csv() you don't have to specify the 'sep' argument.
+myTableCSV <- read.csv("./data/plots_umca_infection.csv", stringsAsFactors = FALSE, header=T)
+class(myTableCSV)
+head(myTableCSV)
+str(myTableCSV)
+```
+
+###Reading 
+```{r}
+
+
+
+```
