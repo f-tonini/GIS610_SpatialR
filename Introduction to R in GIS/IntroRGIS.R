@@ -1,0 +1,733 @@
+# ---	
+# title: "GIS610: Introduction to R in GIS"	
+# author: "Francesco Tonini"	
+# date: "October 1, 2015"	
+# output:	
+#   html_document:	
+#     keep_md: yes	
+#     toc: yes	
+#   pdf_document:	
+#     toc: yes	
+# ---	
+# 	
+# 	
+library(knitr)	
+opts_chunk$set(cache=TRUE, fig.path='./data/figures/')	
+# 	
+# 	
+# This lecture will walk you through some basic R programming concepts needed to better understand its powerful sintax for data analysis and visualization. The focus of the lecture is ultimately the use of R as a GIS tool for basic I/O operations as well as visualization of spatial data. *We acknowledge that the materials provided here do not by any means intend to be comprehensive nor attempt to cover all concepts that would otherwise require a semester-long course*. The sections and code chunks found here are made of a mix of different internet and book resources. Because this repository is open-source, please feel free to use it as you deem appropriate and I would greatly appreciate any feedback to improve and build upon it. If you are familiar with version control concepts, such as Git and Github, you are more than welcome to 'fork' this repository on your own account and send a 'pull request' to me if you wish to add/edit any of the scripts.	
+# 	
+# #Basic R: quick refresheR 	
+# 	
+# This section goes through some basic R commands needed to work with different kinds of data. The purpose is to provide a quick refreshe-R (forgive the horrible 'R' joke) so you can better follow the coming sections, where we dig into more advanced concepts of R as a GIS tool.	
+# 	
+# ###Set Your Working Directory	
+# Here, we'll use the `setwd` function to tell R where the module 1 folder is located on our machine. This will depend on the location of your downloaded course folder, Intro-Spatial-R.	
+# 	
+# 	
+# modify the filepath based on your user specific folder location	
+# Single or double quotes work for text strings. Must use forward slashes.	
+	
+#Some common examples:	
+#setwd('C:/Users/username/Documents/GIS610_SpatialR/Introduction to R in GIS')   # for Windows users	
+#setwd("~/Documents/GIS610_SpatialR/Introduction to R in GIS")                   # ~ for Mac users	
+# 	
+# 	
+# ###Simple Math	
+# 	
+# You can use R as a calculator. The main symbols you may find useful to memorize are the following: +, -, *, /, ^	
+# 	
+# 	
+#addition	
+4 + 3 	
+#subtraction	
+4 - 3	
+#multiplication	
+4 * 3	
+#division	
+4 / 3	
+#power	
+4 ^ 3	
+#square root	
+sqrt(4)	
+# 	
+# 	
+# ###Variables	
+# 	
+# You can assign values to R object (variables) using assignment operators. Variable names can contain any combination of alphanumeric characters along with periods (.) and underscores (_). However, they *CANNOT* start with a number or an underscore. 	
+# 	
+# 	
+var <- 6 	
+var	
+var = 6	
+var	
+	
+#the assignment operator can also point in the other direction	
+3 -> var	
+var	
+	
+#you can also use multiple assignment	
+a <- b <- 7	
+a	
+b	
+	
+#print the value of `var` on console using the print() statement	
+print(a)	
+	
+#concatenate strings	
+paste("Hello", "World", sep=" ")	
+#or	
+paste0("Hello", "World")	
+	
+#operations with variables	
+var1 <- 4	
+var2 <- 6	
+var3 <- var1 + var2	
+var3	
+	
+#remove variables from the current session	
+ls()	
+rm(var3)	
+ls()	
+# 	
+# 	
+# ###Data Types	
+# 	
+# There are several data types in `R` that store different kinds of data: the main ones are `numeric`, `character` (string), and `logical` (TRUE/FALSE)	
+# 	
+# 	
+##NUMERIC:	
+x <- 5	
+class(x)	
+	
+#let's ask whether a variable is numeric	
+is.numeric(x)	
+	
+#by default the numeric value is stores as double (float) precision.	
+#to specify a value is an integer, you can use the letter `L` after the number	
+x <- 5L	
+x	
+is.integer(x)	
+	
+##CHARACTER:	
+##R has two primary ways of handling character data: character and factor	
+x <- "data"	
+x	
+y <- factor("data")	
+y	
+#how many characters does it contain? Does NOT work with FACTOR data	
+nchar(x)	
+	
+##DATES:	
+##There are several ways to deal with dates and times in R. Here, we will use base R but keep	
+##in mind there are specific packages tailored to this type of data (for example `lubridate` and `chron`)	
+date1 <- as.Date("2012-06-28")	
+date1	
+#let's look at its class	
+class(date1)	
+#what happens if we transform it to numeric?	
+as.numeric(date1)	
+	
+#object of class POSIXct	
+date2 <- as.POSIXct("2012-06-28 17:42")	
+date2	
+class(date2)	
+	
+##LOGICAL:	
+#numerically, TRUE corresponds to 1 and FALSE to 0. So something like TRUE * 5 = 5	
+TRUE * 5	
+FALSE * 5	
+k <- TRUE	
+class(k)	
+is.logical(k)	
+	
+#logicals can result from comparing two numbers, or characters	
+2 == 3	
+#does 2 NOT equal three (is 2 different than three?)	
+2 != 3	
+2 < 3	
+#with character variables	
+"data" < "stats"	
+# 	
+# 	
+# ###Vectors	
+# 	
+# One of the biggest strenghts of the R language are **vectors**, which are one-dimension arrays that can hold numeric data, character data, or logical data. 	
+# 	
+# 	
+#numeric vectors	
+num_vec <- c(1, 10, 100)	
+num_vec	
+num_vec <- 1:10	
+num_vec	
+	
+#character vectors	
+char_vec <- c("Hello", "World", "!")	
+char_vec	
+	
+#logical (boolean) vectors	
+bool_vec <- c(TRUE, FALSE, FALSE)	
+bool_vec	
+	
+#operations between vectors	
+num_vec1 <- c(1, 10, 100)	
+num_vec2 <- c(10, 50, 85)	
+num_vec1 - num_vec2	
+	
+#operations within vectors	
+sum(num_vec1)	
+	
+#assign names to vectors	
+names(num_vec1) <- c("First", "Second", "Third")	
+num_vec1	
+# 	
+# 	
+# Vectors can also be sliced by subsetting only the elements you are interested in. There are a few ways to accomplish that, but here I will use some of the most common ones.	
+# 	
+# 	
+#use the [ ] brackets to subset vectors:	
+# 1) by specific element number 	
+num_vec1[2]	
+num_vec1[c(1,3)]	
+# 2) by name	
+num_vec1["Second"]	
+# 3) by logical comparison	
+num_vec1[num_vec1 < 15]	
+num_vec1[num_vec1 == 10]	
+	
+num_vec2	
+num_vec1	
+num_vec2 %in% num_vec1 #contained in?	
+num_vec2[num_vec2 %in% num_vec1]	
+# 	
+# 	
+# ###Calling Functions	
+# 	
+# Functions are very important in any language because they help making your code easily repeatable. Here we look at a couple of basic examples.	
+# 	
+# 	
+x <- 1:10	
+mean(x)	
+	
+#build you own functions	
+Vmean <- function(x){	
+  	
+  mean(x)	
+  #OR m <- mean(x)	
+  #return(m) for best practice!	
+}	
+	
+#let's test it	
+Vmean(x)	
+	
+#more complex custom function with default values of some parameters	
+powerFun <- function(x, lambda = 2){	
+  	
+  if(length(x) > 1) stop('x must be a single number')	
+  x ^ lambda	
+  	
+}	
+#error	
+#powerFun(x)	
+#correct!	
+powerFun(4)	
+# 	
+# 	
+# ###Missing Data	
+# 	
+# `R` has two types of missing data: `NA` and `NULL`. They are similar but they behave differently.	
+# 	
+# ####Type `NA`	
+# 	
+# `NA` is often seen as just another element of a vector. Other statistical programs use 99 or '-' for missing data.	
+# 	
+# 	
+zNum <- c(1, 5, NA, 8, NA)	
+is.na(zNum)	
+	
+#same for character vectors	
+zChar <- c("Hello", NA, "World")	
+is.na(zChar)	
+# 	
+# 	
+# ####Type `NULL`	
+# 	
+# `NULL` is the absence of anything. It's not exactly a "missing" value, rather its "nothingness". For example, functions can sometimes return `NULL` or their parameters can be `NULL`. Another important difference between `NA` and `NULL` is that the latter cannot exist within a vector (it is not stored in memory) because it is "atomical".	
+# 	
+# 	
+z <- c(8, NULL, 15)	
+z	
+z <- NULL	
+is.null(z)	
+	
+# 	
+# 	
+# Data may require some more complex storage than simple `vectors`. The most common are `data.frames`, `matrices`, `list`, and `array`.	
+# 	
+# ###Matrices	
+# 	
+# Matrices are nothing more than two dimensional arrays (vectors), thus the selection operators shown above apply here in a very similar way. In R, you can construct a matrix with the `matrix()` statement.	
+# 	
+# 	
+m <- matrix(1:16, byrow = TRUE, nrow = 4)	
+m	
+	
+#check matrix dimensions	
+dim(m)	
+	
+#construct matrix from two or more vectors	
+num_vec1 <- 1:10	
+num_vec2 <- 5:14	
+	
+#by columns	
+cbind(num_vec1, num_vec2)	
+	
+#by rows	
+rbind(num_vec1, num_vec2)	
+	
+#adding a row	
+rbind(m, 1:4) 	
+	
+#matrix selection:	
+# 1) single element	
+m[1,2]	
+# 2) multiple elements	
+m[1:3, 1:4]	
+m[1:3, ]	
+m[ , 1:3]	
+	
+#arithmetic with matrices	
+m1 <- matrix(1:16, byrow = TRUE, nrow = 4)	
+m1	
+m2 <- matrix(8:31, byrow = TRUE, nrow = 4)	
+m2	
+#matrix product	
+m1 %*% m2	
+	
+#matrix sum (must be SAME DIMENSIONS!)	
+m1 + m1	
+# 	
+# 	
+# ###Data Frames	
+# 	
+# One of the most useful and common structures used in `R` are `data.frames`. You can think of it similar to Excel spreadsheets with columns and rows. In `R`, each column is a `vector`, each of which MUST be the same length. They can be made of different data types.	
+# 	
+# 	
+x <- 1:5	
+y <- sample(c(TRUE, FALSE), 5, replace=T) 	
+z <- c("Mark", "Jim", "Laura", "Jessie", "Frank")	
+DF <- data.frame(x,y,z)	
+DF	
+class(DF)	
+#a common useful R command to look at data.frames structures is str()	
+str(DF)	
+#variable names	
+names(DF)	
+names(DF) <- c("First", "Second", "Third")	
+names(DF)[2]	
+#row names	
+rownames(DF) <- c("One", "Two", "Three", "Four", "Five")	
+#nbr. rows and columns	
+nrow(DF)	
+ncol(DF)	
+#check 'head' and 'tail' of a data frame	
+head(DF, 3)	
+tail(DF, 2)	
+#select variable using the $ sign followed by the variable name	
+DF$Second	
+#OR using the variable name inside the select() command	
+DF[ , "Second"]	
+#OR using index just like for matrices	
+DF[ , 2]	
+#without dropping to a vector	
+DF[ , 2, drop=FALSE]	
+# 	
+# 	
+# ###Lists	
+# 	
+# In some case a "container" needs to hold arbitrary objects that can be either the same kind of varying ones. The same goes for objects with either the same or different length. In `R`, `list` can accomodate for all of the above, as well as storing `data.frames` inside it along with simple `vectors`.	
+# 	
+# 	
+list(1,2,3)	
+#single element with 3 numbers	
+list(c(1,2,3))	
+#mix of vectors and data.frame	
+list(DF, 1:10)	
+#names of a list	
+lst <- list(DF, 1:10) 	
+names(lst)	
+names(lst) <- c("data.frame", "vector")	
+lst	
+#access list elements with double square brackets	
+lst[[1]]	
+#OR using name	
+lst[["vector"]]	
+#select a variable inside the data frame	
+lst[["data.frame"]]$Second	
+#check its length	
+length(lst)	
+#add element to the list	
+lst[[3]] <- c("Hello", "world")	
+# 	
+# 	
+# ###Arrays	
+# 	
+# In `R`, `arrays` are used as multidimensional `vectors`. Everything inside it MUST be of the same type. Elements inside an `array` are accessed using square brackets. An `array` is defined by three indices: one for the row, the second for the column, and the following ones for outer dimension(s). The main difference between `matrices` and `arrays` in `R` is that the latter can have an arbitrary number of outer dimensions.	
+# 	
+# 	
+myArray <- array(1:12, dim = c(2,3,2))	
+myArray	
+#subset dimension of interest	
+myArray[1, ,1]	
+# 	
+# 	
+# #Reading Data in `R`: tables and spatial data 	
+# 	
+# The most common way to read data into `R` is from CSV (Comma Separated Values) files. There are many other options, such as reading data from a database (e.g. MySQL, MS Access, etc.) or from other software output (e.g. SAS, SPSS, etc.) and many more. We will leave the exploration of all the above up to you. Our main focus will quickly shift to the two main GIS spatial data types: vectors and rasters.	
+# 	
+# ###Reading CSV Files	
+# 	
+# The most common way to read csv files is using the `read.table` or `read.csv` commands. By default, csv files are read in as `data.frames`. Reading Excel spreadsheets in `R` is not that simple. It would be preferrable to first conver Excel data into csv files before loading data into `R`. However, a number of packages exist to tackle this type of data. The most common being `gdata`, `XLConnect`, `xlsReadWrite`.	
+# 	
+# 	
+myTable <- read.table("./data/plots_umca_infection.csv", stringsAsFactors = FALSE, header=T, sep=',')	
+#using read.csv() you don't have to specify the 'sep' argument.	
+myTableCSV <- read.csv("./data/plots_umca_infection.csv", stringsAsFactors = FALSE, header=T)	
+class(myTableCSV)	
+head(myTableCSV)	
+str(myTableCSV)	
+# 	
+# 	
+# ###Importing and Exporting Vector GIS Data in `R`	
+# 	
+# *__Credits for this section go to Jillian Deines, Michigan State University and Whalen Dillon, North Carolina State University__*	
+# 	
+# There are a number of `R` packages you can use to deal with spatial data. Let's make sure to load them into R first.	
+# 	
+# 	
+library(sp)         # a dependency for most spatial packages (also loaded with rgdal)	
+library(rgdal)      # R bindings for the Geospatial Data Abstraction Library    	
+library(maptools)   # for the 'readShapeSpatial' example	
+library(latticeExtra)	
+# 	
+# 	
+# Now let's read in shapefiles. Two primary functions exist to read in .shp files: 	
+# 	
+# * `readShapeSpatial` in package `maptools` doesn't read projection information; need to set manually	
+# * `readOGR` in package 'rgdal' reads projection information, so **we'll use this exclusively**. More information on manipulating projections in `R` will follow.	
+# 	
+# Here, we import a polygon boundary for the Colorado Plateau (CP) that has an Albers Equal Area projection, "COP_boundpoly_aea.shp" from the 'data' course subfolder. 	
+# 	
+# 	
+# load shapefile by specifying folder name (dsn), and layer name (no extension!)	
+cp.poly <- readOGR(dsn = 'data',             # subfolder name 	
+                   layer = 'COP_boundpoly_aea')   # file name without extension	
+# 	
+# 	
+# ####Examine loaded shapefile	
+# 	
+# Let's now take a look at what we loaded and make a simple plot of it	
+# 	
+# 	
+# View description. Note the coordinate bounding box and projection info	
+summary(cp.poly)	
+# just look at projection	
+proj4string(cp.poly)	
+# make a simple plot	
+plot(cp.poly, axes=T, col='blue', main = "CO Plateau")	
+# 	
+# 	
+# ####Using readShapeSpatial in package `maptools`	
+# 	
+# You may find another common way to load shapefiles. Here we use the `readShapeSpatial` function in the package `maptools`. *Remember:* this function does NOT automatically load projection information:	
+# 	
+# 	
+# load shapefile by specifying file name with extension	
+cp.poly2 <- readShapeSpatial('data/COP_boundpoly_aea.shp') 	
+	
+# look at the projection information: none	
+summary(cp.poly2)	
+# 	
+# 	
+# You need to know your projection and define it manually by telling `R` what projection your file is in. `R` uses PROJ.4 projection definitions: find more info online at [http://spatialreference.org](http://spatialreference.org). Right now, let's assume I know the proj4 information. **Note that proj4strings are sensitive to spacing and can have no hard returns/line breaks**. I would recommend always trying to use `rgdal` and its `readOGR` function.	
+# 	
+# 	
+# define the AEA projection information	
+aea.proj <- "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=23 +lon_0=-96 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0"	
+# set projection of object	
+proj4string(cp.poly2) <- CRS(aea.proj)	
+# look at projection info	
+summary(cp.poly2)	
+# 	
+# 	
+# ####Import Line and Point Shapefiles	
+# 	
+# No matter what type of vector data you are working with, all shapefiles are read in the same way we just demonstrated. Let's now load points from the "COP_Major_Cities_pt.shp" as a demonstration. *NOTE:* the shapefile has an attribute table with 47 columns/attributes.	
+# 	
+# 	
+# load shapefile by specifying folder name (dsn), and layer name (no extension!)	
+cities <- readOGR(dsn = 'data', layer = 'COP_Major_Cities_pt')	
+# make a quick plot. note that projections need to match	
+par(mar=c(2,2,2,2))             # make plot margins smaller	
+plot(cp.poly, col='azure2')     # plot CO Plateau polygon	
+plot(cities, add=T,             # add city points using add=T	
+     col='red',                 # point color      	
+     pch=19,                    # point type (here, solid circles)	
+     cex=1.5)                   # point size	
+# 	
+# 	
+# ####Querying data of a vector (shapefile)	
+# 	
+# Let's first read a different set of shapefiles and inspect some of their components and structures.	
+# 	
+utah.wgs84 <- readOGR(dsn = "data", layer = "utah_wgs84") # Utah border, for "pretty" plotting	
+deer_unit <- readOGR(dsn = "data", layer = "deerrange_UT") # Game management units	
+	
+#Take a look at the game management data we loaded	
+summary(deer_unit)	
+	
+#This tells us the characteristics of the object, as well as giving a summary of the attribute data stored in the data #table. The attribute data is stored in a slot called `@data` so if we just want to look at the data stored in the #object:	
+summary(deer_unit@data)	
+names(deer_unit) # The attribute data names	
+	
+#The `@data` slot is in fact a class `data.frame` like would be most other tables loaded into `R`, while the entire #object is a Spatial Polygons Data Frame.	
+class(deer_unit)	
+class(deer_unit@data)	
+# 	
+# 	
+# Make a basic plot with coloring based on `UName`	
+# 	
+# 	
+plot(deer_unit, 	
+     axes = TRUE, # adds the coordinate ranges to the axes	
+     col = deer_unit$UName, # colors the polygons based on UName	
+     main = "Utah Game Management Units" # adds main title to plot	
+     )	
+plot(utah.wgs84, add = TRUE) # Add the Utah border for reference	
+# 	
+# 	
+# Use the `spplot` function from `sp` package to provide coloring and a legend based on the `UName` (unit name) attribute of the management units.	
+# 	
+# 	
+spplot(deer_unit, c("UName"), 	
+       scales = list(draw = TRUE), # this adds the coordinate values to the plot	
+       main = "Utah Game Management Units" # adds title to map	
+       # ,sp.layout = list("sp.polygons", utah.wgs84) # adds Utah border to map within call to `spplot` function	
+       ) +	
+      layer(sp.polygons(utah.wgs84)) # alternative way to add layers to map; requires `latticeExtra` package	
+# 	
+# 	
+# Querying the data in a shapefile is much the same as querying any other data frame in `R`. For example, if you want to look at the data only for the West Desert unit.	
+# 	
+#Query data of interest	
+wd <- deer_unit[deer_unit$UName == "West Desert",]	
+summary(wd)	
+plot(wd)	
+plot(deer_unit, main = "West Desert Game Management Unit")	
+plot(utah.wgs84, add = TRUE)	
+plot(wd, add = TRUE, col = "red")	
+# 	
+# 	
+# Or perhaps you just want to have a quick look at how many deer are in the Box Elder unit.	
+# 	
+deer_unit@data$DEER[deer_unit@data$UName == "Box Elder"]	
+# 	
+# 	
+# Note that these are base `R` methods for indexing. There are also several frequently used packages that have been built to help with manipulation of data as needs become more complex, e.g. `plyr`, `dplyr`, `data.table` as three well known packages.	
+# 	
+# ####Convert Latitude/Longitude Spreadsheet Data to A Point Shapefile	
+# 	
+# If you have a spreadsheet of latitude and longitude data points, you can convert that to a spatialPointsDataFrame (spdf) in `R` and then write out a shapefile for future use. Here we'll use coordinate data that is in .csv format, but you could also use .xls(x) provided you use the appropriate R package to load Excel files (I'd recommend `readxl`). Generally, .csv or .txt files are faster and easier to use.	
+# 	
+# Here, we'll load lat/long presence/absence data for the species _Juniperus osteosperma_ in the juos_presab.csv spreadsheet and learn how to write out shapefiles.	
+# 	
+# 	
+# load xy data as a data frame	
+juos <- read.csv('data/juos_presab.csv')	
+# look at data structure: 	
+str(juos)	
+head(juos)	
+# convert dataframe to spdf by specifying long and lat column names	
+# format: ~ longitudeColumn + latitudeColumn	
+coordinates(juos) <- ~ wgs84_x + wgs84_y	
+# check out our new spdf object	
+summary(juos)	
+# 	
+# 	
+# Note once again that our projection is undefined. Since the .csv has no associated projection information, we need to specify it. We know that the coordinates are in a WGS84 based lat/long coordinate reference system.	
+# 	
+# 	
+# create character vector defining the proj4 string for WGS84	
+WGS84.proj <- "+proj=longlat +datum=WGS84" 	
+# set the proj4string	
+proj4string(juos) <- CRS(WGS84.proj)  	
+# take a look	
+summary(juos)	
+# 	
+# Plot our new spatial points, coloring based on presence/absence attribute.	
+# 	
+# 	
+# make a plot based on juos attribute column (0 or 1)	
+plot(juos, pch=19, cex = 0.8, col=c("cadetblue3","coral1"))	
+# add a simple legend	
+legend("topleft",                          # position in plot	
+       fill=c("cadetblue3","coral1"),      # match colors with plot colors   	
+       legend = c("0","1"),                # specify legend text	
+       bty='n')                            # don't use a box around the legend	
+# 	
+# 	
+# ####Write Out Shapefile	
+# 	
+# All shapefiles (points, lines, and polygons) can be written out with the `writeOGR` function in the rgdal package. Here we demonstrate with our newly created spatial point object, which we will write out to the "outData" subfolder within the module 1 data directory and call "juos_pts_wgs84.shp".	
+# 	
+# Note that we will use the ESRI shapefile driver to create a .shp file, but the 'driver' argument has many options including GeoJSON, KML, etc. Typing ogrDrivers() at your command line will give a list of available drivers.	
+# 	
+# 	
+# write out point shapefile. 	
+writeOGR(obj = juos, dsn = 'data/outData', layer = 'juos_pts_wgs84',	
+         driver = 'ESRI Shapefile', overwrite_layer=T)	
+# 	
+# 	
+# ###Importing and Exporting Raster GIS Data in `R`	
+# 	
+# The primary package for raster work is conveniently named `raster`.	
+# 	
+# 	
+library(rgdal)        # R bindings for the Geospatial Data Abstraction Library	
+library(raster)       # workhorse raster package	
+library(latticeExtra) # for add-on functionality to the spplot function	
+# 	
+# 	
+# ####Load a Raster	
+# 	
+# The `raster` function in the raster package is quite flexible and can be used to read and write the following filetypes (type '?writeFormats' at the command line for more information via the help file). The raster call works largely the same for all of these filetypes; here we will load a 1 km elevation file in HFA/ERDAS Imagine format (.img), "elev_1k_wgs.img", from the 'data' folder.	
+# 	
+# Note that for large rasters, the raster package loads information about the data structure (rows, columns, spatial extent, filename) but processes the data in chunks from the harddrive when needed for operations. This allows it to work with objects too large to be loaded into memory but can sometimes be slow.	
+# 	
+# 	
+# load raster by specifying filename with extension; extension sets format	
+elev1km.wgs84 <- raster("data/elev_1k_wgs.tif")	
+# type the name of the object to get information	
+elev1km.wgs84	
+# 	
+# 	
+# Load our polygon boundary and plot, showing base `plot` and `spplot` examples.	
+# 	
+# 	
+# load our polygon boundary in WGS84 (see module 1.1 for loading vector files)	
+cp.latlong <- readOGR(dsn = 'data', layer = 'COP_boundpoly_wgs84')	
+	
+# plot the raster dataset using baseplot (plot) 	
+plot(elev1km.wgs84, 	
+     col = terrain.colors(16),     # terrain.colors is a base color ramp	
+     main = "Elevation (m)")       # title of plot	
+# add our polygon boundary	
+plot(cp.latlong, add=T)              	
+# 	
+# 	
+# Note that the extent is much larger than our study region; We will cover cropping and additional extent issues later on.	
+# 	
+# ####Load Multiple Rasters (Stack)	
+# 	
+# The raster package can also load rasters of identical projection and extent directly into a raster stack, which can make operations on multiple rasters very efficient to execute. If projection and extent for files does not match, it needs to be modified prior to stacking rasters together.	
+# 	
+# To load monthly minimum temperature (tmin) files from WorldClim, we will:	
+# 	
+# * get a list of raster files within the 'WorldClimClip' subfolder using the `list.files` function, using regex search patterns to return files of specific extension (or name, etc.)	
+# * load files directly into a stack using `stack`	
+# * make a basic panel plot using `spplot`	
+# 	
+# 	
+#list files in working directory subfolder with extension ".bil"	
+rasterFiles <- list.files(path = 'data/worldClimClip',  # specify directory	
+                          pattern = "*tif$",         # restrict file names using regex	
+                          full.names=T)              # return full file path	
+	
+#load all 12 rasters at once into a stack	
+tmin.stack <- stack(rasterFiles)	
+#get information; note the "nlayers" attribute	
+tmin.stack	
+#define the projection for all 12 rasters	
+proj4string(tmin.stack) <- CRS("+proj=longlat +datum=WGS84")	
+#plot rasters in the same panel	
+plot(tmin.stack)	
+	
+##NOT RUN:	
+#look at files. spplot uses R's lattice package to do automatic panelling	
+#May take ~1.5 minutes to make full panel of 12 plots	
+#spplot(tmin.stack, 	
+#       main = "Minimum Temperature",    # plot title	
+#       names.attr = month.name) +       # manually set panel titles	
+#  layer(sp.polygons(cp.latlong))        # add boundary polygon	
+# 	
+# 	
+# Stacks are a great way to do batch operations; for example, note that the scale on the Tmin plot is inflated by one order of magnitude. The WorldClim files are stored without decimal values to reduce files size, so to get the actual minimum temperature, we need to divide all 12 rasters by a factor of 10.	
+# 	
+# 	
+#divide all 12 tmin rasters by 10	
+tmin.stack.corrected <- tmin.stack / 10	
+##NOT RUN: 	
+#view change, note scale	
+#spplot(tmin.stack.corrected, main = "Minimum Temperature (C)", 	
+#       names.attr = month.name) + 	
+#  layer(sp.polygons(cp.latlong))  	
+# 	
+# 	
+# ####Write Out Raster	
+# 	
+# You can write out rasters in multiple formats (.tif, .img, etc) and multiple data types (binary, signed/unsigned integer, floating decimals) to manage file sizes, etc.	
+# 	
+# If the format arguments are omitted, `writeRaster` will infer the format from the filename extension, and will default to 'FLT4S' datatype. See ?dataType for options.	
+# 	
+# 	
+# write out the raster object 'cp.ras3'	
+writeRaster(tmin.stack.corrected[[1]], filename = 'data/outData/cpGrid_wgs84.tif', overwrite = T)	
+# 	
+# 	
+# ####END OF INTRODUCTION TO R IN GIS####	
+# 	
+# 	
+# 	
+# convert .Rmd script to .R file for instruction	
+# note .R file subsequently cleaned up for code margin of ~80 char	
+	
+rmd2rscript <- function(infile,outfile){	
+  # read the file	
+  flIn <- readLines(infile)	
+  # identify the start of code blocks	
+# 	
+  # identify the end of code blocks	
+  cdEnd <- sapply(cdStrt, function(x){	
+# 	
+#     return(preidx + x)	
+#   })	
+#   # define an expansion function	
+#   # strip code block indacators	
+#   flIn[c(cdStrt, cdEnd)] <- ""	
+#   expFun <- function(strt, End){	
+#     strt <- strt+1	
+#     End <- End-1	
+#     return(strt:End)	
+#   }	
+#   idx <- unlist(mapply(FUN = expFun, strt = cdStrt, End = cdEnd, 	
+#                 SIMPLIFY = FALSE))	
+#   # add comments to all lines except code blocks	
+#   comIdx <- 1:length(flIn)	
+#   comIdx <- comIdx[-idx]	
+#   for(i in comIdx){	
+#     flIn[i] <- paste("# ", flIn[i], sep = "")	
+#   }	
+#   # create an output file	
+#   #nm <- strsplit(infile, split = "\\.")[[1]][1]	
+#   flOut <- file(outfile, "w")	
+#   for(i in 1:length(flIn)){	
+#     cat(flIn[i], "\n", file = flOut, sep = "\t")	
+#   }	
+#   close(flOut)	
+# }	
+# 	
+# infile <- 'IntroRGIS.Rmd'	
+# outfile <- 'IntroRGIS.R'	
+# 	
+# rmd2rscript(infile, outfile)	
+# ```	
