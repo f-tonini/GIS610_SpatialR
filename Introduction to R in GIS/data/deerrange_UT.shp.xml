@@ -1,0 +1,453 @@
+<?xml version="1.0"?>
+<!--<!DOCTYPE metadata SYSTEM "http://www.esri.com/metadata/esriprof80.dtd">-->
+<metadata xml:lang="en">
+	<Esri>
+		<CreaDate>20130118</CreaDate>
+		<CreaTime>09244300</CreaTime>
+		<SyncOnce>FALSE</SyncOnce>
+		<SyncDate>20120716</SyncDate>
+		<SyncTime>15492100</SyncTime>
+		<ModDate>20120716</ModDate>
+		<ModTime>15492100</ModTime>
+		<DataProperties>
+			<lineage>
+				<Process ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\CopyFeatures" Date="20050131" Time="134811">CopyFeatures "C:\HUNT BOUNDARIES\Wildlife Management Units\wmu20050105.shp" "C:\HUNT BOUNDARIES\New Personal Geodatabase.mdb\wmus2\wmu20050105" # 0 0 0</Process>
+				<Process Name="RepairGeometry_2" ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\RepairGeometry" Date="20050201" Time="111154">RepairGeometry "C:\HUNT BOUNDARIES\New Personal Geodatabase.mdb\wmus2\wmu20050105" "C:\HUNT BOUNDARIES\New Personal Geodatabase.mdb\wmus2\wmu20050105"</Process>
+				<Process Name="DeleteField_1" ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\DeleteField" Date="20050201" Time="143955">DeleteField "C:\HUNT BOUNDARIES\Wildlife Management Units\WMUs_20050201.shp" Shape_Leng "C:\HUNT BOUNDARIES\Wildlife Management Units\WMUs_20050201.shp"</Process>
+				<Process ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\Merge" Date="20100327" Time="131723">Merge Stansbury;cmu_2005edited "C:\Documents and Settings\Lisa Langs Stoner\Desktop\Stansbury_Merge.shp" "OBJECTID 'OBJECTID' true true false 9 Long 0 9 ,First,#,Stansbury,OBJECTID,-1,-1,cmu_2005edited,OBJECTID,-1,-1;UName 'UName' true true false 30 Text 0 0 ,First,#,Stansbury,UName,-1,-1,cmu_2005edited,UName,-1,-1;UNum 'UNum' true true false 9 Long 0 9 ,First,#,Stansbury,UNum,-1,-1,cmu_2005edited,UNum,-1,-1;SUName 'SUName' true true false 40 Text 0 0 ,First,#,Stansbury,SUName,-1,-1,cmu_2005edited,SUName,-1,-1;SUNum 'SUNum' true true false 10 Text 0 0 ,First,#,Stansbury,SUNum,-1,-1,cmu_2005edited,SUNum,-1,-1;Shape_Area 'Shape_Area' true true false 19 Double 11 18 ,First,#,Stansbury,Shape_Area,-1,-1,cmu_2005edited,Shape_Area,-1,-1;AREA_km2 'AREA_km2' true true false 19 Double 0 0 ,First,#,Stansbury,AREA_km2,-1,-1,cmu_2005edited,AREA_km2,-1,-1;ECOREGION 'ECOREGION' true true false 20 Text 0 0 ,First,#,Stansbury,ECOREGION,-1,-1,cmu_2005edited,ECOREGION,-1,-1;UNG_DENS 'UNG_DENS' true true false 19 Double 0 0 ,First,#,Stansbury,UNG_DENS,-1,-1,cmu_2005edited,UNG_DENS,-1,-1;HUMNPOPDEN 'HUMNPOPDEN' true true false 19 Double 0 0 ,First,#,Stansbury,HUMNPOPDEN,-1,-1,cmu_2005edited,HUMNPOPDEN,-1,-1;AVEDISTOWN 'AVEDISTOWN' true true false 19 Double 0 0 ,First,#,Stansbury,AVEDISTOWN,-1,-1,cmu_2005edited,AVEDISTOWN,-1,-1;AV_RD_DENS 'AV_RD_DENS' true true false 19 Double 0 0 ,First,#,Stansbury,AV_RD_DENS,-1,-1,cmu_2005edited,AV_RD_DENS,-1,-1;DIST_PAVED 'DIST_PAVED' true true false 19 Double 0 0 ,First,#,Stansbury,DIST_PAVED,-1,-1,cmu_2005edited,DIST_PAVED,-1,-1;REMOTE 'REMOTE' true true false 4 Short 0 4 ,First,#,Stansbury,REMOTE,-1,-1,cmu_2005edited,REMOTE,-1,-1;DENSCOUG 'DENSCOUG' true true false 19 Double 0 0 ,First,#,Stansbury,DENSCOUG,-1,-1,cmu_2005edited,DENSCOUG,-1,-1;JUNE_NDVI 'JUNE_NDVI' true true false 19 Double 0 0 ,First,#,Stansbury,JUNE_NDVI,-1,-1,cmu_2005edited,JUNE_NDVI,-1,-1;JUNE_SD 'JUNE_SD' true true false 19 Double 0 0 ,First,#,Stansbury,JUNE_SD,-1,-1,cmu_2005edited,JUNE_SD,-1,-1;PRIVATE 'PRIVATE' true true false 19 Double 0 0 ,First,#,Stansbury,PRIVATE,-1,-1,cmu_2005edited,PRIVATE,-1,-1;RMOTE_RANK 'RMOTE_RANK' true true false 10 Text 0 0 ,First,#,Stansbury,RMOTE_RANK,-1,-1,cmu_2005edited,RMOTE_RANK,-1,-1;UNG_DENSlg 'UNG_DENSlg' true true false 19 Double 0 0 ,First,#,Stansbury,UNG_DENSlg,-1,-1,cmu_2005edited,UNG_DENSlg,-1,-1;NDVI_PREY 'NDVI_PREY' true true false 4 Short 0 4 ,First,#,cmu_2005edited,NDVI_PREY,-1,-1;NO_COUGS 'NO_COUGS' true true false 19 Double 0 0 ,First,#,cmu_2005edited,NO_COUGS,-1,-1;SURF_AREA 'SURF_AREA' true true false 19 Double 0 0 ,First,#,cmu_2005edited,SURF_AREA,-1,-1;RMOTE_SCOR 'RMOTE_SCOR' true true false 19 Double 0 0 ,First,#,cmu_2005edited,RMOTE_SCOR,-1,-1;REMOT_RNK2 'REMOT_RNK2' true true false 4 Short 0 4 ,First,#,cmu_2005edited,REMOT_RNK2,-1,-1;NO_WTRSHDS 'NO_WTRSHDS' true true false 19 Double 0 0 ,First,#,cmu_2005edited,NO_WTRSHDS,-1,-1;DNSCOUG_TL 'DNSCOUG_TL' true true false 19 Double 0 0 ,First,#,cmu_2005edited,DNSCOUG_TL,-1,-1;PREY_DENS 'PREY_DENS' true true false 8 Text 0 0 ,First,#,cmu_2005edited,PREY_DENS,-1,-1;ALT_NAME 'ALT_NAME' true true false 50 Text 0 0 ,First,#,cmu_2005edited,ALT_NAME,-1,-1"</Process><Process ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\Merge" Date="20120619" Time="142510">Merge 'ungulatepops_2008-2011 selection 2';bookcliffs_dissolve;cache_dissolve2;wasatch_dissolve C:\Dissertation\State_data\UDWR\ungulatepops_2008_2011_ed.shp "UName 'UName' true true false 30 Text 0 0 ,First,#,ungulatepops_2008-2011 selection 2,UName,-1,-1,bookcliffs_dissolve,UName,-1,-1;UNum 'UNum' true true false 9 Long 0 9 ,First,#,ungulatepops_2008-2011 selection 2,UNum,-1,-1,cache_dissolve2,UNum,-1,-1,wasatch_dissolve,UNum,-1,-1;SUName 'SUName' true true false 40 Text 0 0 ,First,#,ungulatepops_2008-2011 selection 2,SUName,-1,-1;SUNum 'SUNum' true true false 10 Text 0 0 ,First,#,ungulatepops_2008-2011 selection 2,SUNum,-1,-1;AREA_km2 'AREA_km2' true true false 19 Double 0 0 ,First,#,ungulatepops_2008-2011 selection 2,AREA_km2,-1,-1;SURF_AREA 'SURF_AREA' true true false 19 Double 0 0 ,First,#,ungulatepops_2008-2011 selection 2,SURF_AREA,-1,-1;DEER 'DEER' true true false 19 Double 0 0 ,First,#,ungulatepops_2008-2011 selection 2,DEER,-1,-1;DEER_SD 'DEER_SD' true true false 19 Double 0 0 ,First,#,ungulatepops_2008-2011 selection 2,DEER_SD,-1,-1;FIRST_UNam 'FIRST_UNam' true true false 30 Text 0 0 ,First,#,bookcliffs_dissolve,FIRST_UNam,-1,-1,cache_dissolve2,FIRST_UNam,-1,-1;MEAN_UNum 'MEAN_UNum' true true false 19 Double 0 0 ,First,#,bookcliffs_dissolve,MEAN_UNum,-1,-1;FIRST_SUNa 'FIRST_SUNa' true true false 40 Text 0 0 ,First,#,bookcliffs_dissolve,FIRST_SUNa,-1,-1,cache_dissolve2,FIRST_SUNa,-1,-1,wasatch_dissolve,FIRST_SUNa,-1,-1;FIRST_SUNu 'FIRST_SUNu' true true false 10 Text 0 0 ,First,#,bookcliffs_dissolve,FIRST_SUNu,-1,-1,cache_dissolve2,FIRST_SUNu,-1,-1,wasatch_dissolve,FIRST_SUNu,-1,-1;SUM_AREA_k 'SUM_AREA_k' true true false 19 Double 0 0 ,First,#,bookcliffs_dissolve,SUM_AREA_k,-1,-1,cache_dissolve2,SUM_AREA_k,-1,-1,wasatch_dissolve,SUM_AREA_k,-1,-1;SUM_SURF_A 'SUM_SURF_A' true true false 19 Double 0 0 ,First,#,bookcliffs_dissolve,SUM_SURF_A,-1,-1,cache_dissolve2,SUM_SURF_A,-1,-1,wasatch_dissolve,SUM_SURF_A,-1,-1;SUM_DEER 'SUM_DEER' true true false 19 Double 0 0 ,First,#,bookcliffs_dissolve,SUM_DEER,-1,-1,cache_dissolve2,SUM_DEER,-1,-1;SUM_DEER_S 'SUM_DEER_S' true true false 19 Double 0 0 ,First,#,bookcliffs_dissolve,SUM_DEER_S,-1,-1,cache_dissolve2,SUM_DEER_S,-1,-1;FIRST_UNum 'FIRST_UNum' true true false 9 Long 0 9 ,First,#,cache_dissolve2,FIRST_UNum,-1,-1;MEAN_DEER 'MEAN_DEER' true true false 19 Double 0 0 ,First,#,wasatch_dissolve,MEAN_DEER,-1,-1;MEAN_DEER_ 'MEAN_DEER_' true true false 19 Double 0 0 ,First,#,wasatch_dissolve,MEAN_DEER_,-1,-1"</Process><Process ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Analysis Tools.tbx\Intersect" Date="20120716" Time="154848">Intersect "ungulatepops_2008_2011 #;annual_deer_range_dissolve #" C:\Dissertation\NASA\UT_GMUs\ungulatepops_2008_2011_annual.shp ALL "500 Meters" INPUT</Process><Process ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\CopyFeatures" Date="20120716" Time="154922">CopyFeatures ungulatepops_2008_2011_annual C:\Dissertation\NASA\UT_GMUs\ungulatepops_2008_2011_annarea.shp # 0 0 0</Process><Process ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\AddField" Date="20120716" Time="154922">AddField C:\Dissertation\NASA\UT_GMUs\ungulatepops_2008_2011_annarea.shp F_AREA DOUBLE # # # # NON_NULLABLE NON_REQUIRED # C:\Dissertation\NASA\UT_GMUs\ungulatepops_2008_2011_annarea.shp</Process><Process ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Spatial Statistics Tools.tbx\CalculateAreas" Date="20120716" Time="154922">CalculateAreas ungulatepops_2008_2011_annual C:\Dissertation\NASA\UT_GMUs\ungulatepops_2008_2011_annarea.shp</Process><Process ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\Project" Date="20130118" Time="092443">Project C:\Dissertation\NASA\UT_GMUs\ungulatepops_2008_2011_annarea.shp C:\Dissertation\NASA\AZUTgmu_geographic\ungulatepops_2008_2011_annarea.shp GEOGCS['GCS_WGS_1984',DATUM['D_WGS_1984',SPHEROID['WGS_1984',6378137.0,298.257223563]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]] NAD_1983_To_WGS_1984_5 PROJCS['NAD_1983_UTM_Zone_12N',GEOGCS['GCS_North_American_1983',DATUM['D_North_American_1983',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-111.0],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0.0],UNIT['Meter',1.0]]</Process></lineage>
+		</DataProperties>
+		<MetaID>{01F4244C-2FDF-4ABD-B36A-41A1CEA28D32}</MetaID></Esri>
+	<idinfo>
+		<citation>
+			<citeinfo>
+				<origin>Utah Division of Wildlife Resources</origin>
+				<pubdate>20050201</pubdate>
+				<title>Wildlife Manage Units 20050201</title>
+				<ftname Sync="TRUE">ungulatepops_2008_2011_annarea</ftname>
+				<geoform Sync="TRUE">vector digital data</geoform>
+				<onlink Sync="TRUE">\\DAVIDS\C$\Dissertation\NASA\UT_GMUs\geo_w84\ungulatepops_2008_2011_annarea</onlink>
+			</citeinfo>
+		</citation>
+		<native Sync="TRUE">Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 3; ESRI ArcCatalog 9.3.1.4000</native>
+		<descript>
+			<langdata Sync="TRUE">en</langdata>
+			<abstract>Wildlife Management Units and subunits used by the Utah Division of Wildlife Resources</abstract>
+			<purpose>For agency wildlife planning and management</purpose>
+		</descript>
+		<timeperd>
+			<current>January 2005</current>
+			<timeinfo>
+				<sngdate>
+					<caldate>January 2005</caldate>
+				</sngdate>
+			</timeinfo>
+		</timeperd>
+		<status>
+			<progress>Complete</progress>
+			<update>As needed</update>
+		</status>
+		<spdom>
+			<bounding>
+				<westbc Sync="TRUE">-114.278989</westbc>
+				<eastbc Sync="TRUE">-108.908986</eastbc>
+				<northbc Sync="TRUE">42.034363</northbc>
+				<southbc Sync="TRUE">36.962661</southbc>
+			</bounding>
+			<lboundng>
+				<leftbc Sync="TRUE">228373.031191</leftbc>
+				<rightbc Sync="TRUE">673135.379126</rightbc>
+				<bottombc Sync="TRUE">4095081.092682</bottombc>
+				<topbc Sync="TRUE">4653591.492690</topbc>
+			</lboundng>
+		</spdom>
+		<keywords>
+			<theme>
+				<themekt>REQUIRED: Reference to a formally registered thesaurus or a similar authoritative source of theme keywords.</themekt>
+				<themekey>Wildlife Management Units</themekey>
+			</theme>
+			<place>
+				<placekey>Utah</placekey>
+			</place>
+			<temporal>
+				<tempkey>2005</tempkey>
+			</temporal>
+		</keywords>
+		<accconst>none</accconst>
+		<useconst>none, but the Utah Division of Wildlife Resources provides no warranty nor accepts any responsibility or liability for any inaccurate or incomplete data associated with this file.</useconst>
+		<natvform Sync="TRUE">Shapefile</natvform>
+		<ptcontac>
+			<cntinfo>
+				<cntaddr>
+					<address>1594 W. North Temple Ste 2110</address>
+					<addrtype>mailing and physical address</addrtype>
+					<address>P.O. Box 146301</address>
+					<city>Salt Lake City</city>
+					<state>UT</state>
+					<postal>84114-3154</postal>
+					<country>USA</country>
+				</cntaddr>
+				<cntorgp>
+					<cntorg>Utah Division of Wildlife Resources</cntorg>
+					<cntper>Gary L. Ogborn</cntper>
+				</cntorgp>
+				<cntvoice>801-538-4855</cntvoice>
+				<hours>Monday-Friday; 8am-5pm</hours>
+				<cntpos>GIS Manager</cntpos>
+				<cntfax>801-538-4547</cntfax>
+				<cntemail>garyogborn@utah.gov</cntemail>
+			</cntinfo>
+		</ptcontac>
+		<datacred>Utah Division of Wildlife Resources</datacred>
+	</idinfo>
+	<distInfo>
+		<distributor>
+			<distorTran>
+				<onLineSrc>
+					<linkage Sync="TRUE">file://\\DAVIDS\C$\Dissertation\NASA\UT_GMUs\geo_w84\ungulatepops_2008_2011_annarea</linkage>
+					<protocol Sync="TRUE">Local Area Network</protocol>
+					<orDesc Sync="TRUE">002</orDesc>
+				</onLineSrc>
+				<transSize Sync="TRUE">0.000</transSize>
+			</distorTran>
+			<distorFormat>
+				<formatName Sync="TRUE">Shapefile</formatName>
+			</distorFormat>
+		</distributor>
+	</distInfo>
+	<dataqual>
+		<lineage>
+			<procstep>
+				<procdesc>Feature data was digitized using the ArcView 9.0 trace tool.  Digital line graphs (DLGs) at 1:100,000 scale for streams, roads, trails, county boundaries, land ownership, and railroads were obtained from http://agrc.its.state.ut.us/ served as base layers.  Sketches created from DLGs were inspected and edited at 1:8,000 scale to ensure an accurate copy.  Where no DLGs were available, heads-up digitizing was performed using USGS 1:100,000 DRGs as background and reference.  Topology was performed with a cluster tolerance of 3.0 meters.</procdesc>
+				<date Sync="TRUE">20041122</date>
+				<time Sync="TRUE">14273700</time>
+				<procsv>ArcInfo 9.0</procsv>
+				<procdate>20050105</procdate>
+				<proctime>1636</proctime>
+				<proccont><cntinfo><cntperp><cntper>Gary L. Ogborn</cntper><cntorg>Utah Division of Wildlife Resources</cntorg></cntperp><cntpos>Assistant GIS Manager</cntpos><cntaddr><addrtype>mailing and physical address</addrtype><address>1594 West North Temple Ste 2110</address><city>Salt Lake City</city><state>UT</state><postal>84114-6301</postal><country>USA</country></cntaddr><cntvoice>801.538.4855</cntvoice><cntfax>801.538.4745</cntfax><cntemail>garyogborn@utah.gov</cntemail><hours>8am-4pm M-F</hours></cntinfo></proccont></procstep>
+			<procstep>
+				<procdesc Sync="TRUE">Dataset copied.</procdesc>
+				<srcused Sync="TRUE">C:\HUNT BOUNDARIES\Wildlife Management units\wmu20041129</srcused>
+				<date Sync="TRUE">20041202</date>
+				<time Sync="TRUE">10480800</time>
+			</procstep>
+			<procstep>
+				<procdesc Sync="TRUE">Dataset copied.</procdesc>
+				<srcused Sync="TRUE">C:\HUNT BOUNDARIES\Wildlife Management units\wmu20041202</srcused>
+				<date Sync="TRUE">20041208</date>
+				<time Sync="TRUE">10264000</time>
+			</procstep>
+			<procstep>
+				<procdesc Sync="TRUE">Dataset copied.</procdesc>
+				<date Sync="TRUE">20041223</date>
+				<time Sync="TRUE">10265900</time>
+			</procstep>
+			<procstep>
+				<procdesc>Feature data was digitized using ArcView 9.0 trace tool. Digital line graphs (1:100,000) of streams, roads, trails, county lines, land ownership status, and railroads obtained from agrc.state.ut.us served as base layers.  Sketches created from DLGs were inspected and edited at 1:8,000 to ensure an accurate copy.  USGS 1:000,000 DRGs were also used as base layers.  Where no DLGs were available, heads-up digitizing was performed using DRGs as reference.  Topolgy was performed with a cluster tolerance of 3 meters.</procdesc>
+				<date Sync="TRUE">20050105</date>
+				<time Sync="TRUE">16365300</time>
+				<proccont>
+					<cntinfo>
+						<cntaddr>
+							<address>1594 West North Temple</address>
+							<addrtype>mailing and physical address</addrtype>
+							<address>PO Box 146301</address>
+							<city>Salt Lake City</city>
+							<state>UT</state>
+							<postal>84114-6301</postal>
+							<country>USA</country>
+						</cntaddr>
+						<cntperp>
+							<cntper>Gary L. Ogborn</cntper>
+							<cntorg>Utah Division of Wildlife Resources</cntorg>
+						</cntperp>
+						<cntpos>Asst. GIS Manager</cntpos>
+						<cntvoice>801-538-4855</cntvoice>
+						<cntemail>garyogborn@utah.gov</cntemail>
+						<hours>M-F 8am-5pm</hours>
+					</cntinfo>
+				</proccont>
+				<procsv>ArcInfo 9.0</procsv>
+				<procdate>20050201</procdate>
+			</procstep>
+			<procstep>
+				<procdesc Sync="TRUE">Dataset copied.</procdesc>
+				<srcused Sync="TRUE">\\NRDWRGARYOG1\C$\HUNT BOUNDARIES\New Personal Geodatabase.mdb</srcused>
+				<date Sync="TRUE">20050201</date>
+				<time Sync="TRUE">13333200</time>
+			</procstep>
+			<srcinfo>
+				<srcscale>100,000</srcscale>
+				<srccite>
+					<citeinfo>
+						<origin>Automated Geographic Reference Center (AGRC)</origin>
+						<pubdate>20050101</pubdate>
+						<pubtime>Unknown</pubtime>
+						<title>State Geographic Information Database (SGID)</title>
+						<edition>10Th</edition>
+						<geoform>vector digital data</geoform>
+						<pubinfo>
+							<pubplace>Salt Lake City, Utah</pubplace>
+							<publish>Automated Geographic Reference Center (AGRC)</publish>
+						</pubinfo>
+						<onlink>http://agrc.its.state.ut.us/</onlink>
+					</citeinfo>
+				</srccite>
+				<typesrc>online</typesrc>
+				<srccontr>geographic location.</srccontr>
+			</srcinfo>
+			<procstep><procdesc Sync="TRUE">Dataset copied.</procdesc><srcused Sync="TRUE"></srcused><date Sync="TRUE">20050606</date><time Sync="TRUE">14410400</time></procstep><procstep><procdesc Sync="TRUE">Dataset copied.</procdesc><srcused Sync="TRUE"></srcused><procdate Sync="TRUE">20100327</procdate><proctime Sync="TRUE">13132900</proctime></procstep><procstep><procdesc Sync="TRUE">Dataset copied.</procdesc><srcused Sync="TRUE"></srcused><procdate Sync="TRUE">20100327</procdate><proctime Sync="TRUE">13582700</proctime></procstep><procstep><procdesc Sync="TRUE">Dataset copied.</procdesc><srcused Sync="TRUE"></srcused><procdate Sync="TRUE">20120618</procdate><proctime Sync="TRUE">13401200</proctime></procstep><procstep><procdesc Sync="TRUE">Dataset copied.</procdesc><srcused Sync="TRUE"></srcused><procdate Sync="TRUE">20130118</procdate><proctime Sync="TRUE">09244300</proctime></procstep><procstep><procdesc Sync="TRUE">Dataset moved.</procdesc><srcused Sync="TRUE">C:\Dissertation\NASA\AZUTgmu_geographic\ungulatepops_2008_2011_annarea</srcused><procdate Sync="TRUE">20130124</procdate><proctime Sync="TRUE">08370300</proctime></procstep></lineage>
+		<logic>Wildlife Management Units were determined by field biologist's best profession judgement.  Feature data was digitized using 1:100,000 digital line graphs of streams, roads, trails, railroads, county lines, and land ownership status obtained from Utah agrc.state.ut.us.  All polygon features, except for the bounding polygon, were  check against "must not verlap" and "must not have gaps" topology rules using topology verification tools in Arcinfo 9.0, and at a cluster tolerance of 3.0 meters.</logic>
+		<complete>Geographic data locations were based on 1:100,000 Digital Line Graphs (DLGs) published by the Utah Automated Geographic Information Center and housed as part of the State Geographical Information Database (SGID). When no DLG was available and digitizing was necessary, screen digitizing was used with a Digital Raster Graph (DRG) of the 1:100,000 scale map as background and guide.</complete>
+		<attracc>
+			<attraccr>Attributes are either defined by biologist and managers or software generated. Attributes defined by biologists and     managers are compared to a master list for correct entries. Software generated attributes are checked against know      areas to assess correctness.</attraccr>
+		</attracc>
+		<posacc>
+			<horizpa>
+				<horizpar>Check USGS 1:100,000 scale map standards</horizpar>
+			</horizpa>
+			<vertacc>
+				<vertaccr>None</vertaccr>
+			</vertacc>
+		</posacc>
+	</dataqual>
+	<dataIdInfo>
+		<envirDesc Sync="TRUE">Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 3; ESRI ArcCatalog 9.3.1.4000</envirDesc>
+		<dataLang>
+			<languageCode Sync="TRUE" value="en"></languageCode>
+		</dataLang>
+		<idCitation>
+			<resTitle Sync="TRUE">ungulatepops_2008_2011_annarea</resTitle>
+			<presForm>
+				<PresFormCd Sync="TRUE" value="005"></PresFormCd>
+			</presForm>
+		</idCitation>
+		<spatRpType>
+			<SpatRepTypCd Sync="TRUE" value="001"></SpatRepTypCd>
+		</spatRpType>
+		<dataExt>
+			<geoEle>
+				<GeoBndBox esriExtentType="native">
+					<westBL Sync="TRUE">228373.031191</westBL>
+					<eastBL Sync="TRUE">673135.379126</eastBL>
+					<northBL Sync="TRUE">4653591.49269</northBL>
+					<southBL Sync="TRUE">4095081.092682</southBL>
+					<exTypeCode Sync="TRUE">1</exTypeCode>
+				</GeoBndBox>
+			</geoEle>
+		</dataExt>
+		<geoBox esriExtentType="decdegrees">
+			<westBL Sync="TRUE">-114.278989</westBL>
+			<eastBL Sync="TRUE">-108.908986</eastBL>
+			<northBL Sync="TRUE">42.034363</northBL>
+			<southBL Sync="TRUE">36.962661</southBL>
+			<exTypeCode Sync="TRUE">1</exTypeCode>
+		</geoBox>
+	</dataIdInfo>
+	<metainfo>
+		<langmeta Sync="TRUE">en</langmeta>
+		<metstdn Sync="TRUE">FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+		<metstdv Sync="TRUE">FGDC-STD-001-1998</metstdv>
+		<mettc Sync="TRUE">local time</mettc>
+		<metc>
+			<cntinfo>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<city>Salt Lake City</city>
+					<state>UT</state>
+					<postal>84114-3154</postal>
+					<address>1594 W. North Temple Ste 2110</address>
+					<address>P.O. Box 146301</address>
+					<country>USA</country>
+				</cntaddr>
+				<cntvoice>801-538-4855</cntvoice>
+				<cntpos>GIS Manager</cntpos>
+				<cntemail>garyogborn@utah.gov</cntemail>
+				<hours>Monday - Friday; 8am - 4pm</hours>
+				<cntfax>801.538.4745</cntfax>
+				<cntorgp><cntorg>Utah Division of Wildlife Resources</cntorg><cntper>Gary L. Ogborn</cntper></cntorgp></cntinfo>
+		</metc>
+		<metd>20050201</metd>
+		<metfrd>20080701</metfrd>
+		<metac>None</metac>
+		<metuc>None</metuc>
+		<metrd>20071130</metrd><metextns><onlink Sync="TRUE">http://www.esri.com/metadata/esriprof80.html</onlink><metprof Sync="TRUE">ESRI Metadata Profile</metprof></metextns></metainfo>
+	<mdLang>
+		<languageCode Sync="TRUE" value="en"></languageCode>
+	</mdLang>
+	<mdStanName Sync="TRUE">ISO 19115 Geographic Information - Metadata</mdStanName>
+	<mdStanVer Sync="TRUE">DIS_ESRI1.0</mdStanVer>
+	<mdChar>
+		<CharSetCd Sync="TRUE" value="004"></CharSetCd>
+	</mdChar>
+	<mdHrLv>
+		<ScopeCd Sync="TRUE" value="005"></ScopeCd>
+	</mdHrLv>
+	<mdHrLvName Sync="TRUE">dataset</mdHrLvName>
+	<distinfo>
+		<resdesc Sync="TRUE">Downloadable Data</resdesc>
+		<stdorder>
+			<digform>
+				<digtinfo>
+					<transize Sync="TRUE">0.000</transize>
+					<dssize Sync="TRUE">0.000</dssize>
+				</digtinfo>
+			</digform>
+			<fees>None</fees>
+			<ordering>Notify by phone or e-mail</ordering>
+			<turnarnd>Allow a week</turnarnd>
+		</stdorder>
+		<distrib>
+			<cntinfo>
+				<cntpos>GIS Manager</cntpos>
+				<cntvoice>801.538.4855</cntvoice>
+				<cntfax>801.538.4547</cntfax>
+				<cntemail>garyogborn@utah.gov</cntemail>
+				<hours>Monday - Friday; 8am - 4 pm</hours>
+				<cntaddr><address>1594 W. North Temple Ste 2110</address><addrtype>mailing and physical address</addrtype><address>P.O. Box 146301</address><city>Salt Lake City</city><state>Utah</state><postal>84114-3154</postal><country>USA</country></cntaddr><cntorgp><cntorg>Utah Division of Wildlife Resources</cntorg><cntper>Gary L. Ogborn</cntper></cntorgp></cntinfo>
+		</distrib>
+		<distliab>The Utah Division of Wildlife Resources provides no warranty nor accepts any responsibility or liability for any inaccurate or incomplete data associated with this file.</distliab>
+	</distinfo>
+	<spdoinfo>
+		<direct Sync="TRUE">Vector</direct>
+		<ptvctinf>
+			<esriterm Name="ungulatepops_2008_2011_annarea">
+				<efeatyp Sync="TRUE">Simple</efeatyp>
+				<efeageom Sync="TRUE">Polygon</efeageom>
+				<esritopo Sync="TRUE">FALSE</esritopo>
+				<efeacnt Sync="TRUE">0</efeacnt>
+				<spindex Sync="TRUE">FALSE</spindex>
+				<linrefer Sync="TRUE">FALSE</linrefer>
+			</esriterm>
+			<sdtsterm Name="ungulatepops_2008_2011_annarea">
+				<sdtstype Sync="TRUE">G-polygon</sdtstype>
+				<ptvctcnt Sync="TRUE">0</ptvctcnt>
+			</sdtsterm>
+		</ptvctinf>
+	</spdoinfo>
+	<spref>
+		<horizsys>
+			<cordsysn>
+				<geogcsn Sync="TRUE">GCS_North_American_1983</geogcsn>
+				<projcsn Sync="TRUE">NAD_1983_UTM_Zone_12N</projcsn>
+			</cordsysn>
+			<planar>
+				<planci>
+					<plance Sync="TRUE">coordinate pair</plance>
+					<plandu Sync="TRUE">meters</plandu>
+					<coordrep>
+						<absres Sync="TRUE">0.000000</absres>
+						<ordres Sync="TRUE">0.000000</ordres>
+					</coordrep>
+				</planci>
+				<gridsys><gridsysn Sync="TRUE">Universal Transverse Mercator</gridsysn><utm><utmzone Sync="TRUE">12</utmzone><transmer><sfctrmer Sync="TRUE">0.999600</sfctrmer><longcm Sync="TRUE">-111.000000</longcm><latprjo Sync="TRUE">0.000000</latprjo><feast Sync="TRUE">500000.000000</feast><fnorth Sync="TRUE">0.000000</fnorth></transmer></utm></gridsys></planar>
+			<geodetic>
+				<horizdn Sync="TRUE">North American Datum of 1983</horizdn>
+				<ellips Sync="TRUE">Geodetic Reference System 80</ellips>
+				<semiaxis Sync="TRUE">6378137.000000</semiaxis>
+				<denflat Sync="TRUE">298.257222</denflat>
+			</geodetic>
+		</horizsys>
+		<vertdef>
+			<altsys>
+				<altenc Sync="TRUE">Explicit elevation coordinate included with horizontal coordinates</altenc>
+				<altres Sync="TRUE">0.000010</altres>
+			</altsys>
+		</vertdef>
+	</spref>
+	<refSysInfo>
+		<RefSystem>
+			<refSysID>
+				<identCode Sync="TRUE">NAD_1983_UTM_Zone_12N</identCode>
+			</refSysID>
+		</RefSystem>
+	</refSysInfo>
+	<spatRepInfo>
+		<VectSpatRep>
+			<topLvl>
+				<TopoLevCd Sync="TRUE" value="001"></TopoLevCd>
+			</topLvl>
+			<geometObjs Name="ungulatepops_2008_2011_annarea"><geoObjTyp><GeoObjTypCd Sync="TRUE" value="001"></GeoObjTypCd></geoObjTyp><geoObjCnt Sync="TRUE">0</geoObjCnt></geometObjs></VectSpatRep>
+	</spatRepInfo>
+	<eainfo>
+		<detailed Name="ungulatepops_2008_2011_annarea">
+			<attr>
+				<attrlabl Sync="TRUE">SUNum</attrlabl>
+				<attalias Sync="TRUE">SUNum</attalias>
+				<attrtype Sync="TRUE">String</attrtype>
+				<attwidth Sync="TRUE">10</attwidth>
+				<attrdef>Wildlife Management Subunit number</attrdef>
+				<attrdefs>Utah Division of Wildlife Resources</attrdefs>
+				<attrmfrq>As needed</attrmfrq>
+				<attrdomv>
+					<udom>Number and text used to identify subunit.</udom>
+				</attrdomv>
+			</attr>
+			<enttyp>
+				<enttypl Sync="TRUE">ungulatepops_2008_2011_annarea</enttypl>
+				<enttypt Sync="TRUE">Feature Class</enttypt>
+				<enttypc Sync="TRUE">0</enttypc>
+				<enttypd>Wildlife Management Units as of 2005</enttypd>
+				<enttypds>Utah Division of Wildllife Resources</enttypds>
+			</enttyp>
+			<attr>
+				<attrlabl Sync="TRUE">Shape</attrlabl>
+				<attalias Sync="TRUE">Shape</attalias>
+				<attrtype Sync="TRUE">Geometry</attrtype>
+				<attwidth Sync="TRUE">0</attwidth>
+				<attrdef Sync="TRUE">Feature geometry.</attrdef>
+				<attrdefs Sync="TRUE">ESRI</attrdefs>
+				<attrdomv>
+					<udom Sync="TRUE">Coordinates defining the features.</udom>
+				</attrdomv>
+				<atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr><attrlabl Sync="TRUE">FID_ungula</attrlabl><attalias Sync="TRUE">FID_ungula</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">9</attwidth></attr><attr>
+				<attrlabl Sync="TRUE">UName</attrlabl>
+				<attalias Sync="TRUE">UName</attalias>
+				<attrtype Sync="TRUE">String</attrtype>
+				<attwidth Sync="TRUE">30</attwidth>
+				<attrdef>Wildlife Management Unit Name</attrdef>
+				<attrdefs>Utah Division of Wildlife Resources</attrdefs>
+				<attrmfrq>As needed</attrmfrq>
+				<attrdomv>
+					<udom>Text to identify unit.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">UNum</attrlabl>
+				<attalias Sync="TRUE">UNum</attalias>
+				<attrtype Sync="TRUE">Number</attrtype>
+				<attwidth Sync="TRUE">9</attwidth>
+				<attrdef>Wildlife Management Unit Number</attrdef>
+				<attrdefs>Utah Division of Wildlife Resources</attrdefs>
+				<attrmfrq>As needed</attrmfrq>
+				<attrdomv>
+					<udom>Number and text used to identify subunit</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">SUName</attrlabl>
+				<attalias Sync="TRUE">SUName</attalias>
+				<attrtype Sync="TRUE">String</attrtype>
+				<attwidth Sync="TRUE">40</attwidth>
+				<attrdef>Wildlife Management Subunit name</attrdef>
+				<attrdefs>Utah Division of Wildlife Resource</attrdefs>
+				<attrmfrq>As needed</attrmfrq>
+				<attrdomv>
+					<udom>Number and text used to identify subunit.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">FID</attrlabl>
+				<attalias Sync="TRUE">FID</attalias>
+				<attrtype Sync="TRUE">OID</attrtype>
+				<attwidth Sync="TRUE">4</attwidth>
+				<attrdef Sync="TRUE">Internal feature number.</attrdef>
+				<attrdefs Sync="TRUE">ESRI</attrdefs>
+				<attrdomv>
+					<udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom>
+				</attrdomv>
+				<atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr><attrlabl Sync="TRUE">AREA_km2</attrlabl><attalias Sync="TRUE">AREA_km2</attalias><attrtype Sync="TRUE">Float</attrtype><attwidth Sync="TRUE">19</attwidth><atnumdec Sync="TRUE">11</atnumdec></attr><attr><attrlabl Sync="TRUE">SURF_AREA</attrlabl><attalias Sync="TRUE">SURF_AREA</attalias><attrtype Sync="TRUE">Float</attrtype><attwidth Sync="TRUE">19</attwidth><atnumdec Sync="TRUE">11</atnumdec></attr><attr><attrlabl Sync="TRUE">DEER</attrlabl><attalias Sync="TRUE">DEER</attalias><attrtype Sync="TRUE">Float</attrtype><attwidth Sync="TRUE">19</attwidth><atnumdec Sync="TRUE">11</atnumdec></attr><attr><attrlabl Sync="TRUE">DEER_SD</attrlabl><attalias Sync="TRUE">DEER_SD</attalias><attrtype Sync="TRUE">Float</attrtype><attwidth Sync="TRUE">19</attwidth><atnumdec Sync="TRUE">11</atnumdec></attr><attr><attrlabl Sync="TRUE">ELK</attrlabl><attalias Sync="TRUE">ELK</attalias><attrtype Sync="TRUE">Float</attrtype><attwidth Sync="TRUE">19</attwidth><atnumdec Sync="TRUE">11</atnumdec></attr><attr><attrlabl Sync="TRUE">ELK_SD</attrlabl><attalias Sync="TRUE">ELK_SD</attalias><attrtype Sync="TRUE">Float</attrtype><attwidth Sync="TRUE">19</attwidth><atnumdec Sync="TRUE">11</atnumdec></attr><attr><attrlabl Sync="TRUE">FAWNS</attrlabl><attalias Sync="TRUE">FAWNS</attalias><attrtype Sync="TRUE">Float</attrtype><attwidth Sync="TRUE">19</attwidth><atnumdec Sync="TRUE">11</atnumdec></attr><attr><attrlabl Sync="TRUE">FAWN_SD</attrlabl><attalias Sync="TRUE">FAWN_SD</attalias><attrtype Sync="TRUE">Float</attrtype><attwidth Sync="TRUE">19</attwidth><atnumdec Sync="TRUE">11</atnumdec></attr><attr><attrlabl Sync="TRUE">CALVES</attrlabl><attalias Sync="TRUE">CALVES</attalias><attrtype Sync="TRUE">Float</attrtype><attwidth Sync="TRUE">19</attwidth><atnumdec Sync="TRUE">11</atnumdec></attr><attr><attrlabl Sync="TRUE">CALF_SD</attrlabl><attalias Sync="TRUE">CALF_SD</attalias><attrtype Sync="TRUE">Float</attrtype><attwidth Sync="TRUE">19</attwidth><atnumdec Sync="TRUE">11</atnumdec></attr><attr><attrlabl Sync="TRUE">FID_annual</attrlabl><attalias Sync="TRUE">FID_annual</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">9</attwidth></attr><attr><attrlabl Sync="TRUE">DISS</attrlabl><attalias Sync="TRUE">DISS</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">4</attwidth></attr></detailed>
+	</eainfo>
+	<mdDateSt Sync="TRUE">20120716</mdDateSt>
+</metadata>
