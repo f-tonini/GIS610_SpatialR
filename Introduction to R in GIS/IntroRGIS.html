@@ -70,16 +70,19 @@ img {
 <ul>
 <li><a href="#basic-r-quick-refresher">Basic R: quick refresheR</a><ul>
 <li><a href="#set-your-working-directory">Set Your Working Directory</a></li>
+<li><a href="#getting-help">Getting Help</a></li>
 <li><a href="#simple-math">Simple Math</a></li>
 <li><a href="#variables">Variables</a></li>
 <li><a href="#data-types">Data Types</a></li>
 <li><a href="#vectors">Vectors</a></li>
 <li><a href="#calling-functions">Calling Functions</a></li>
 <li><a href="#missing-data">Missing Data</a></li>
+<li><a href="#advanced-data-structures">Advanced Data Structures:</a><ul>
 <li><a href="#matrices">Matrices</a></li>
 <li><a href="#data-frames">Data Frames</a></li>
 <li><a href="#lists">Lists</a></li>
 <li><a href="#arrays">Arrays</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#reading-data-in-r-tables-and-spatial-data">Reading Data in <code>R</code>: tables and spatial data</a><ul>
 <li><a href="#reading-csv-files">Reading CSV Files</a></li>
@@ -89,7 +92,7 @@ img {
 </ul>
 </div>
 
-<p>This lecture will walk you through some basic R programming concepts needed to better understand its powerful sintax for data analysis and visualization. The focus of the lecture is ultimately the use of R as a GIS tool for basic I/O operations as well as visualization of spatial data. <em>We acknowledge that the materials provided here do not by any means intend to be comprehensive nor attempt to cover all concepts that would otherwise require a semester-long course</em>. The sections and code chunks found here are made of a mix of different internet and book resources. Because this repository is open-source, please feel free to use it as you deem appropriate and I would greatly appreciate any feedback to improve and build upon it. If you are familiar with version control concepts, such as Git and Github, you are more than welcome to ‘fork’ this repository on your own account and send a ‘pull request’ to me if you wish to add/edit any of the scripts.</p>
+<p>This lecture will walk you through some basic R programming concepts needed to better understand its powerful syntax for data analysis and visualization. The focus of the lecture is ultimately the use of R as a GIS tool for basic I/O operations as well as visualization of spatial data. <em>We acknowledge that the materials provided here do not by any means intend to be comprehensive nor attempt to cover all concepts that would otherwise require a semester-long course</em>. The sections and code chunks found here are made of a mix of different internet and book resources. Because this repository is open-source, please feel free to use it as you deem appropriate and I would greatly appreciate any feedback to improve and build upon it. If you are familiar with version control concepts, such as Git and Github, you are more than welcome to ‘fork’ this repository on your own account and send a ‘pull request’ to me if you wish to add/edit any of the scripts.</p>
 <div id="basic-r-quick-refresher" class="section level1">
 <h1>Basic R: quick refresheR</h1>
 <p>This section goes through some basic R commands needed to work with different kinds of data. The purpose is to provide a quick refreshe-R (forgive the horrible ‘R’ joke) so you can better follow the coming sections, where we dig into more advanced concepts of R as a GIS tool.</p>
@@ -102,6 +105,17 @@ img {
 #Some common examples:
 #setwd('C:/Users/username/Documents/GIS610_SpatialR/Introduction to R in GIS')   # for Windows users
 #setwd(&quot;~/Documents/GIS610_SpatialR/Introduction to R in GIS&quot;)                   # ~ for Mac users</code></pre>
+</div>
+<div id="getting-help" class="section level3">
+<h3>Getting Help</h3>
+<p><code>R</code> offers a comprehensive built-in help system. At the program’s command prompt you can use any of the following:</p>
+<ul>
+<li><strong>help.start()</strong> # general help<br /></li>
+<li><strong>help(foo)</strong> # help about function foo<br /></li>
+<li><strong>?foo</strong> # same thing<br /></li>
+<li><strong>apropos(“foo”)</strong> # list all functions containing string foo<br /></li>
+<li><strong>example(foo)</strong> # show an example of function foo</li>
+</ul>
 </div>
 <div id="simple-math" class="section level3">
 <h3>Simple Math</h3>
@@ -153,6 +167,14 @@ paste(&quot;Hello&quot;, &quot;World&quot;, sep=&quot; &quot;)</code></pre>
 <pre class="r"><code>#or
 paste0(&quot;Hello&quot;, &quot;World&quot;)</code></pre>
 <pre><code>## [1] &quot;HelloWorld&quot;</code></pre>
+<pre class="r"><code>#concatenate paths to file using the paste() function
+file &lt;- &quot;table.csv&quot;
+wdir &lt;- &quot;C:/Users/username/Documents&quot;
+paste(wdir, file, sep='/')</code></pre>
+<pre><code>## [1] &quot;C:/Users/username/Documents/table.csv&quot;</code></pre>
+<pre class="r"><code>#OR using the file.path() function
+file.path(wdir, file)</code></pre>
+<pre><code>## [1] &quot;C:/Users/username/Documents/table.csv&quot;</code></pre>
 <pre class="r"><code>#operations with variables
 var1 &lt;- 4
 var2 &lt;- 6
@@ -161,10 +183,10 @@ var3</code></pre>
 <pre><code>## [1] 10</code></pre>
 <pre class="r"><code>#remove variables from the current session
 ls()</code></pre>
-<pre><code>## [1] &quot;a&quot;    &quot;b&quot;    &quot;var&quot;  &quot;var1&quot; &quot;var2&quot; &quot;var3&quot;</code></pre>
+<pre><code>## [1] &quot;a&quot;    &quot;b&quot;    &quot;file&quot; &quot;var&quot;  &quot;var1&quot; &quot;var2&quot; &quot;var3&quot; &quot;wdir&quot;</code></pre>
 <pre class="r"><code>rm(var3)
 ls()</code></pre>
-<pre><code>## [1] &quot;a&quot;    &quot;b&quot;    &quot;var&quot;  &quot;var1&quot; &quot;var2&quot;</code></pre>
+<pre><code>## [1] &quot;a&quot;    &quot;b&quot;    &quot;file&quot; &quot;var&quot;  &quot;var1&quot; &quot;var2&quot; &quot;wdir&quot;</code></pre>
 </div>
 <div id="data-types" class="section level3">
 <h3>Data Types</h3>
@@ -306,8 +328,8 @@ mean(x)</code></pre>
 <pre class="r"><code>#build you own functions
 Vmean &lt;- function(x){
   
-  mean(x)
-  #OR m &lt;- mean(x)
+  sum(x) / length(x) 
+  #OR m &lt;- sum(x) / length(x)
   #return(m) for best practice!
 }
 
@@ -350,9 +372,17 @@ z</code></pre>
 <pre class="r"><code>z &lt;- NULL
 is.null(z)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<p>Data may require some more complex storage than simple <code>vectors</code>. The most common are <code>data.frames</code>, <code>matrices</code>, <code>list</code>, and <code>array</code>.</p>
 </div>
 </div>
+<div id="advanced-data-structures" class="section level2">
+<h2>Advanced Data Structures:</h2>
+<p>Data may require some more complex storage than simple <code>vectors</code>. The most common types are listed here along with a summary of their main characteristics:</p>
+<ul>
+<li><strong>Matrices</strong>: matrices are two dimensional vectors (rows and colums). However, differently from vectors, they can onlu hold numerical values<br /></li>
+<li><strong>Data Frames</strong>: data frames are the most common and useful structure in R. Similarly to matrices, they have two dimensions (rows and colums), where each column is a vector and <strong>MUST</strong> be the same length. Differently from matrices, data frames can be made of a mix of data types (e.g. numeric, character, factor)<br /></li>
+<li><strong>Lists</strong>: Lists in <code>R</code> are containers able to hold arbitrary objects either of the same or diffent kinds. Each object inside a list can be of arbitrary length as well<br /></li>
+<li><strong>Arrays</strong>: Arrays can be seen as matrices (numerical) with three or more dimensions (e.g. x, y, z or more)</li>
+</ul>
 <div id="matrices" class="section level3">
 <h3>Matrices</h3>
 <p>Matrices are nothing more than two dimensional arrays (vectors), thus the selection operators shown above apply here in a very similar way. In R, you can construct a matrix with the <code>matrix()</code> statement.</p>
@@ -456,18 +486,18 @@ z &lt;- c(&quot;Mark&quot;, &quot;Jim&quot;, &quot;Laura&quot;, &quot;Jessie&quo
 DF &lt;- data.frame(x,y,z)
 DF</code></pre>
 <pre><code>##   x     y      z
-## 1 1 FALSE   Mark
-## 2 2 FALSE    Jim
-## 3 3 FALSE  Laura
-## 4 4 FALSE Jessie
-## 5 5  TRUE  Frank</code></pre>
+## 1 1  TRUE   Mark
+## 2 2  TRUE    Jim
+## 3 3  TRUE  Laura
+## 4 4  TRUE Jessie
+## 5 5 FALSE  Frank</code></pre>
 <pre class="r"><code>class(DF)</code></pre>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <pre class="r"><code>#a common useful R command to look at data.frames structures is str()
 str(DF)</code></pre>
 <pre><code>## 'data.frame':    5 obs. of  3 variables:
 ##  $ x: int  1 2 3 4 5
-##  $ y: logi  FALSE FALSE FALSE FALSE TRUE
+##  $ y: logi  TRUE TRUE TRUE TRUE FALSE
 ##  $ z: Factor w/ 5 levels &quot;Frank&quot;,&quot;Jessie&quot;,..: 5 3 4 2 1</code></pre>
 <pre class="r"><code>#variable names
 names(DF)</code></pre>
@@ -485,30 +515,30 @@ nrow(DF)</code></pre>
 <pre class="r"><code>#check 'head' and 'tail' of a data frame
 head(DF, 3)</code></pre>
 <pre><code>##       First Second Third
-## One       1  FALSE  Mark
-## Two       2  FALSE   Jim
-## Three     3  FALSE Laura</code></pre>
+## One       1   TRUE  Mark
+## Two       2   TRUE   Jim
+## Three     3   TRUE Laura</code></pre>
 <pre class="r"><code>tail(DF, 2)</code></pre>
 <pre><code>##      First Second  Third
-## Four     4  FALSE Jessie
-## Five     5   TRUE  Frank</code></pre>
+## Four     4   TRUE Jessie
+## Five     5  FALSE  Frank</code></pre>
 <pre class="r"><code>#select variable using the $ sign followed by the variable name
 DF$Second</code></pre>
-<pre><code>## [1] FALSE FALSE FALSE FALSE  TRUE</code></pre>
+<pre><code>## [1]  TRUE  TRUE  TRUE  TRUE FALSE</code></pre>
 <pre class="r"><code>#OR using the variable name inside the select() command
 DF[ , &quot;Second&quot;]</code></pre>
-<pre><code>## [1] FALSE FALSE FALSE FALSE  TRUE</code></pre>
+<pre><code>## [1]  TRUE  TRUE  TRUE  TRUE FALSE</code></pre>
 <pre class="r"><code>#OR using index just like for matrices
 DF[ , 2]</code></pre>
-<pre><code>## [1] FALSE FALSE FALSE FALSE  TRUE</code></pre>
+<pre><code>## [1]  TRUE  TRUE  TRUE  TRUE FALSE</code></pre>
 <pre class="r"><code>#without dropping to a vector
 DF[ , 2, drop=FALSE]</code></pre>
 <pre><code>##       Second
-## One    FALSE
-## Two    FALSE
-## Three  FALSE
-## Four   FALSE
-## Five    TRUE</code></pre>
+## One     TRUE
+## Two     TRUE
+## Three   TRUE
+## Four    TRUE
+## Five   FALSE</code></pre>
 </div>
 <div id="lists" class="section level3">
 <h3>Lists</h3>
@@ -530,11 +560,11 @@ list(c(1,2,3))</code></pre>
 list(DF, 1:10)</code></pre>
 <pre><code>## [[1]]
 ##       First Second  Third
-## One       1  FALSE   Mark
-## Two       2  FALSE    Jim
-## Three     3  FALSE  Laura
-## Four      4  FALSE Jessie
-## Five      5   TRUE  Frank
+## One       1   TRUE   Mark
+## Two       2   TRUE    Jim
+## Three     3   TRUE  Laura
+## Four      4   TRUE Jessie
+## Five      5  FALSE  Frank
 ## 
 ## [[2]]
 ##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
@@ -546,28 +576,28 @@ names(lst)</code></pre>
 lst</code></pre>
 <pre><code>## $data.frame
 ##       First Second  Third
-## One       1  FALSE   Mark
-## Two       2  FALSE    Jim
-## Three     3  FALSE  Laura
-## Four      4  FALSE Jessie
-## Five      5   TRUE  Frank
+## One       1   TRUE   Mark
+## Two       2   TRUE    Jim
+## Three     3   TRUE  Laura
+## Four      4   TRUE Jessie
+## Five      5  FALSE  Frank
 ## 
 ## $vector
 ##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code>#access list elements with double square brackets
 lst[[1]]</code></pre>
 <pre><code>##       First Second  Third
-## One       1  FALSE   Mark
-## Two       2  FALSE    Jim
-## Three     3  FALSE  Laura
-## Four      4  FALSE Jessie
-## Five      5   TRUE  Frank</code></pre>
+## One       1   TRUE   Mark
+## Two       2   TRUE    Jim
+## Three     3   TRUE  Laura
+## Four      4   TRUE Jessie
+## Five      5  FALSE  Frank</code></pre>
 <pre class="r"><code>#OR using name
 lst[[&quot;vector&quot;]]</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code>#select a variable inside the data frame
 lst[[&quot;data.frame&quot;]]$Second</code></pre>
-<pre><code>## [1] FALSE FALSE FALSE FALSE  TRUE</code></pre>
+<pre><code>## [1]  TRUE  TRUE  TRUE  TRUE FALSE</code></pre>
 <pre class="r"><code>#check its length
 length(lst)</code></pre>
 <pre><code>## [1] 2</code></pre>
@@ -593,6 +623,7 @@ myArray</code></pre>
 <pre class="r"><code>#subset dimension of interest
 myArray[1, ,1]</code></pre>
 <pre><code>## [1] 1 3 5</code></pre>
+</div>
 </div>
 </div>
 <div id="reading-data-in-r-tables-and-spatial-data" class="section level1">

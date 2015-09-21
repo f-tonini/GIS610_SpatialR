@@ -15,7 +15,7 @@ library(knitr)
 opts_chunk$set(cache=TRUE, fig.path='./data/figures/')	
 # 	
 # 	
-# This lecture will walk you through some basic R programming concepts needed to better understand its powerful sintax for data analysis and visualization. The focus of the lecture is ultimately the use of R as a GIS tool for basic I/O operations as well as visualization of spatial data. *We acknowledge that the materials provided here do not by any means intend to be comprehensive nor attempt to cover all concepts that would otherwise require a semester-long course*. The sections and code chunks found here are made of a mix of different internet and book resources. Because this repository is open-source, please feel free to use it as you deem appropriate and I would greatly appreciate any feedback to improve and build upon it. If you are familiar with version control concepts, such as Git and Github, you are more than welcome to 'fork' this repository on your own account and send a 'pull request' to me if you wish to add/edit any of the scripts.	
+# This lecture will walk you through some basic R programming concepts needed to better understand its powerful syntax for data analysis and visualization. The focus of the lecture is ultimately the use of R as a GIS tool for basic I/O operations as well as visualization of spatial data. *We acknowledge that the materials provided here do not by any means intend to be comprehensive nor attempt to cover all concepts that would otherwise require a semester-long course*. The sections and code chunks found here are made of a mix of different internet and book resources. Because this repository is open-source, please feel free to use it as you deem appropriate and I would greatly appreciate any feedback to improve and build upon it. If you are familiar with version control concepts, such as Git and Github, you are more than welcome to 'fork' this repository on your own account and send a 'pull request' to me if you wish to add/edit any of the scripts.	
 # 	
 # #Basic R: quick refresheR 	
 # 	
@@ -32,6 +32,15 @@ opts_chunk$set(cache=TRUE, fig.path='./data/figures/')
 #setwd('C:/Users/username/Documents/GIS610_SpatialR/Introduction to R in GIS')   # for Windows users	
 #setwd("~/Documents/GIS610_SpatialR/Introduction to R in GIS")                   # ~ for Mac users	
 # 	
+# ###Getting Help	
+# 	
+# `R` offers a comprehensive built-in help system. At the program's command prompt you can use any of the following:	
+# 	
+# * **help.start()**   # general help  	
+# * **help(foo)**      # help about function foo  	
+# * **?foo**           # same thing  	
+# * **apropos("foo")** # list all functions containing string foo  	
+# * **example(foo)**   # show an example of function foo	
 # 	
 # ###Simple Math	
 # 	
@@ -78,6 +87,13 @@ print(a)
 paste("Hello", "World", sep=" ")	
 #or	
 paste0("Hello", "World")	
+	
+#concatenate paths to file using the paste() function	
+file <- "table.csv"	
+wdir <- "C:/Users/username/Documents"	
+paste(wdir, file, sep='/')	
+#OR using the file.path() function	
+file.path(wdir, file)	
 	
 #operations with variables	
 var1 <- 4	
@@ -212,8 +228,8 @@ mean(x)
 #build you own functions	
 Vmean <- function(x){	
   	
-  mean(x)	
-  #OR m <- mean(x)	
+  sum(x) / length(x) 	
+  #OR m <- sum(x) / length(x)	
   #return(m) for best practice!	
 }	
 	
@@ -262,7 +278,14 @@ is.null(z)
 	
 # 	
 # 	
-# Data may require some more complex storage than simple `vectors`. The most common are `data.frames`, `matrices`, `list`, and `array`.	
+# ##Advanced Data Structures:	
+# 	
+# Data may require some more complex storage than simple `vectors`. The most common types are listed here along with a summary of their main characteristics:  	
+# 	
+# * **Matrices**: matrices are two dimensional vectors (rows and colums). However, differently from vectors, they can onlu hold numerical values  	
+# * **Data Frames**: data frames are the most common and useful structure in R. Similarly to matrices, they have two dimensions (rows and colums), where each column is a vector and __MUST__ be the same length. Differently from matrices, data frames can be made of a mix of data types (e.g. numeric, character, factor)  	
+# * **Lists**: Lists in `R` are containers able to hold arbitrary objects either of the same or diffent kinds. Each object inside a list can be of arbitrary length as well  	
+# * **Arrays**: Arrays can be seen as matrices (numerical) with three or more dimensions (e.g. x, y, z or more)	
 # 	
 # ###Matrices	
 # 	
