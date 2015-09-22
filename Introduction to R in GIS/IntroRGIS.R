@@ -15,7 +15,7 @@ library(knitr)
 opts_chunk$set(cache=TRUE, fig.path='./data/figures/')	
 # 	
 # 	
-# This lecture will walk you through some basic R programming concepts needed to better understand its powerful syntax for data analysis and visualization. The focus of the lecture is ultimately the use of R as a GIS tool for basic I/O operations as well as visualization of spatial data. *We acknowledge that the materials provided here do not by any means intend to be comprehensive nor attempt to cover all concepts that would otherwise require a semester-long course*. The sections and code chunks found here are made of a mix of different internet and book resources. Because this repository is open-source, please feel free to use it as you deem appropriate and I would greatly appreciate any feedback to improve and build upon it. If you are familiar with version control concepts, such as Git and Github, you are more than welcome to 'fork' this repository on your own account and send a 'pull request' to me if you wish to add/edit any of the scripts.	
+# This lecture will walk you through some basic R programming concepts needed to better understand its powerful syntax for data analysis and visualization. The focus of the lecture is ultimately the use of R as a GIS tool for basic I/O operations as well as visualization of spatial data. __*We acknowledge that the materials provided here do not by any means intend to be comprehensive nor attempt to cover all concepts that would otherwise require a semester-long course*__. The sections and code chunks found here are made of a mix of different internet and book resources. Because this repository is open-source, please feel free to use it as you deem appropriate and I would greatly appreciate any feedback to improve and build upon it. If you are familiar with version control concepts, such as Git and Github, you are more than welcome to 'fork' this repository on your own account and send a 'pull request' to me if you wish to add/edit any of the scripts.	
 # 	
 # #Basic R: quick refresheR 	
 # 	
@@ -168,7 +168,7 @@ is.logical(k)
 # 	
 # ###Vectors	
 # 	
-# One of the biggest strenghts of the R language are **vectors**, which are one-dimension arrays that can hold numeric data, character data, or logical data. 	
+# One of the biggest strengths of the R language are **vectors**, which are one-dimension arrays that can hold numeric data, character data, or logical data. 	
 # 	
 # 	
 #numeric vectors	
@@ -251,11 +251,11 @@ powerFun(4)
 # 	
 # ###Missing Data	
 # 	
-# `R` has two types of missing data: `NA` and `NULL`. They are similar but they behave differently.	
+# `R` has two types of missing data: `NA` and `NULL`. They are similar but they behave Unlike.	
 # 	
 # ####Type `NA`	
 # 	
-# `NA` is often seen as just another element of a vector. Other statistical programs use 99 or '-' for missing data.	
+# `NA` is used exclusively in the logical sense and can be seen as just another element of a vector. Other statistical programs use 99 or '-' for missing data.	
 # 	
 # 	
 zNum <- c(1, 5, NA, 8, NA)	
@@ -268,7 +268,7 @@ is.na(zChar)
 # 	
 # ####Type `NULL`	
 # 	
-# `NULL` is the absence of anything. It's not exactly a "missing" value, rather its "nothingness". For example, functions can sometimes return `NULL` or their parameters can be `NULL`. Another important difference between `NA` and `NULL` is that the latter cannot exist within a vector (it is not stored in memory) because it is "atomical".	
+# `NULL` is the absence of anything. It's not exactly a "missing" value, rather its "nothingness". For example, functions can sometimes return `NULL` or their parameters can be `NULL`. Another important difference between `NA` and `NULL` is that the latter cannot exist within a vector (it is not stored in memory).	
 # 	
 # 	
 z <- c(8, NULL, 15)	
@@ -282,9 +282,9 @@ is.null(z)
 # 	
 # Data may require some more complex storage than simple `vectors`. The most common types are listed here along with a summary of their main characteristics:  	
 # 	
-# * **Matrices**: matrices are two dimensional vectors (rows and colums). However, differently from vectors, they can onlu hold numerical values  	
-# * **Data Frames**: data frames are the most common and useful structure in R. Similarly to matrices, they have two dimensions (rows and colums), where each column is a vector and __MUST__ be the same length. Differently from matrices, data frames can be made of a mix of data types (e.g. numeric, character, factor)  	
-# * **Lists**: Lists in `R` are containers able to hold arbitrary objects either of the same or diffent kinds. Each object inside a list can be of arbitrary length as well  	
+# * **Matrices**: matrices are two dimensional vectors (rows and colums). However, Unlike vectors, they can only hold numerical values  	
+# * **Data Frames**: data frames are the most common and useful structure in R. Similarly to matrices, they have two dimensions (rows and colums), where each column is a vector and __MUST__ be the same length. Unlike from matrices, data frames can be made of a mix of data types (e.g. numeric, character, factor)  	
+# * **Lists**: Lists in `R` are containers able to hold arbitrary objects either of the same or different kinds. Each object inside a list can be of arbitrary length as well  	
 # * **Arrays**: Arrays can be seen as matrices (numerical) with three or more dimensions (e.g. x, y, z or more)	
 # 	
 # ###Matrices	
@@ -368,7 +368,7 @@ DF[ , 2, drop=FALSE]
 # 	
 # ###Lists	
 # 	
-# In some case a "container" needs to hold arbitrary objects that can be either the same kind of varying ones. The same goes for objects with either the same or different length. In `R`, `list` can accomodate for all of the above, as well as storing `data.frames` inside it along with simple `vectors`.	
+# In some case a "container" needs to hold arbitrary objects that can be either the same kind of varying ones. The same goes for objects with either the same or different length. In `R`, `list` can accommodate for all of the above, as well as storing `data.frames` inside it along with simple `vectors`.	
 # 	
 # 	
 list(1,2,3)	
