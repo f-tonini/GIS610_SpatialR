@@ -70,6 +70,7 @@ img {
 <ul>
 <li><a href="#basic-r-quick-refresher">Basic R: quick refresheR</a><ul>
 <li><a href="#set-your-working-directory">Set Your Working Directory</a></li>
+<li><a href="#r-packages-needed">R Packages Needed</a><ul>
 <li><a href="#getting-help">Getting Help</a></li>
 <li><a href="#simple-math">Simple Math</a></li>
 <li><a href="#variables">Variables</a></li>
@@ -77,6 +78,7 @@ img {
 <li><a href="#vectors">Vectors</a></li>
 <li><a href="#calling-functions">Calling Functions</a></li>
 <li><a href="#missing-data">Missing Data</a></li>
+</ul></li>
 <li><a href="#advanced-data-structures">Advanced Data Structures:</a><ul>
 <li><a href="#matrices">Matrices</a></li>
 <li><a href="#data-frames">Data Frames</a></li>
@@ -106,6 +108,13 @@ img {
 #setwd('C:/Users/username/Documents/GIS610_SpatialR/Introduction to R in GIS')   # for Windows users
 #setwd(&quot;~/Documents/GIS610_SpatialR/Introduction to R in GIS&quot;)                   # ~ for Mac users</code></pre>
 </div>
+<div id="r-packages-needed" class="section level2">
+<h2>R Packages Needed</h2>
+<p>Make sure you have these packages installed (use install.packages() function in R) or some scripts will not run. In order to use some of the useful functionalities that come with each package, we need to call them into our current R session using the library() or require() command.</p>
+<pre class="r"><code>library(rgdal)      # R bindings for the Geospatial Data Abstraction Library    
+library(maptools)   # for the 'readShapeSpatial' example
+library(latticeExtra) # for add-on functionality to the spplot function
+library(raster)       # workhorse raster package</code></pre>
 <div id="getting-help" class="section level3">
 <h3>Getting Help</h3>
 <p><code>R</code> offers a comprehensive built-in help system. At the program’s command prompt you can use any of the following:</p>
@@ -374,6 +383,7 @@ is.null(z)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 </div>
+</div>
 <div id="advanced-data-structures" class="section level2">
 <h2>Advanced Data Structures:</h2>
 <p>Data may require some more complex storage than simple <code>vectors</code>. The most common types are listed here along with a summary of their main characteristics:</p>
@@ -485,19 +495,19 @@ y &lt;- sample(c(TRUE, FALSE), 5, replace=T)
 z &lt;- c(&quot;Mark&quot;, &quot;Jim&quot;, &quot;Laura&quot;, &quot;Jessie&quot;, &quot;Frank&quot;)
 DF &lt;- data.frame(x,y,z)
 DF</code></pre>
-<pre><code>##   x     y      z
-## 1 1 FALSE   Mark
-## 2 2 FALSE    Jim
-## 3 3  TRUE  Laura
-## 4 4  TRUE Jessie
-## 5 5 FALSE  Frank</code></pre>
+<pre><code>##   x    y      z
+## 1 1 TRUE   Mark
+## 2 2 TRUE    Jim
+## 3 3 TRUE  Laura
+## 4 4 TRUE Jessie
+## 5 5 TRUE  Frank</code></pre>
 <pre class="r"><code>class(DF)</code></pre>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <pre class="r"><code>#a common useful R command to look at data.frames structures is str()
 str(DF)</code></pre>
 <pre><code>## 'data.frame':    5 obs. of  3 variables:
 ##  $ x: int  1 2 3 4 5
-##  $ y: logi  FALSE FALSE TRUE TRUE FALSE
+##  $ y: logi  TRUE TRUE TRUE TRUE TRUE
 ##  $ z: Factor w/ 5 levels &quot;Frank&quot;,&quot;Jessie&quot;,..: 5 3 4 2 1</code></pre>
 <pre class="r"><code>#variable names
 names(DF)</code></pre>
@@ -515,30 +525,30 @@ nrow(DF)</code></pre>
 <pre class="r"><code>#check 'head' and 'tail' of a data frame
 head(DF, 3)</code></pre>
 <pre><code>##       First Second Third
-## One       1  FALSE  Mark
-## Two       2  FALSE   Jim
+## One       1   TRUE  Mark
+## Two       2   TRUE   Jim
 ## Three     3   TRUE Laura</code></pre>
 <pre class="r"><code>tail(DF, 2)</code></pre>
 <pre><code>##      First Second  Third
 ## Four     4   TRUE Jessie
-## Five     5  FALSE  Frank</code></pre>
+## Five     5   TRUE  Frank</code></pre>
 <pre class="r"><code>#select variable using the $ sign followed by the variable name
 DF$Second</code></pre>
-<pre><code>## [1] FALSE FALSE  TRUE  TRUE FALSE</code></pre>
+<pre><code>## [1] TRUE TRUE TRUE TRUE TRUE</code></pre>
 <pre class="r"><code>#OR using the variable name inside the select() command
 DF[ , &quot;Second&quot;]</code></pre>
-<pre><code>## [1] FALSE FALSE  TRUE  TRUE FALSE</code></pre>
+<pre><code>## [1] TRUE TRUE TRUE TRUE TRUE</code></pre>
 <pre class="r"><code>#OR using index just like for matrices
 DF[ , 2]</code></pre>
-<pre><code>## [1] FALSE FALSE  TRUE  TRUE FALSE</code></pre>
+<pre><code>## [1] TRUE TRUE TRUE TRUE TRUE</code></pre>
 <pre class="r"><code>#without dropping to a vector
 DF[ , 2, drop=FALSE]</code></pre>
 <pre><code>##       Second
-## One    FALSE
-## Two    FALSE
+## One     TRUE
+## Two     TRUE
 ## Three   TRUE
 ## Four    TRUE
-## Five   FALSE</code></pre>
+## Five    TRUE</code></pre>
 </div>
 <div id="lists" class="section level3">
 <h3>Lists</h3>
@@ -560,11 +570,11 @@ list(c(1,2,3))</code></pre>
 list(DF, 1:10)</code></pre>
 <pre><code>## [[1]]
 ##       First Second  Third
-## One       1  FALSE   Mark
-## Two       2  FALSE    Jim
+## One       1   TRUE   Mark
+## Two       2   TRUE    Jim
 ## Three     3   TRUE  Laura
 ## Four      4   TRUE Jessie
-## Five      5  FALSE  Frank
+## Five      5   TRUE  Frank
 ## 
 ## [[2]]
 ##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
@@ -576,28 +586,28 @@ names(lst)</code></pre>
 lst</code></pre>
 <pre><code>## $data.frame
 ##       First Second  Third
-## One       1  FALSE   Mark
-## Two       2  FALSE    Jim
+## One       1   TRUE   Mark
+## Two       2   TRUE    Jim
 ## Three     3   TRUE  Laura
 ## Four      4   TRUE Jessie
-## Five      5  FALSE  Frank
+## Five      5   TRUE  Frank
 ## 
 ## $vector
 ##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code>#access list elements with double square brackets
 lst[[1]]</code></pre>
 <pre><code>##       First Second  Third
-## One       1  FALSE   Mark
-## Two       2  FALSE    Jim
+## One       1   TRUE   Mark
+## Two       2   TRUE    Jim
 ## Three     3   TRUE  Laura
 ## Four      4   TRUE Jessie
-## Five      5  FALSE  Frank</code></pre>
+## Five      5   TRUE  Frank</code></pre>
 <pre class="r"><code>#OR using name
 lst[[&quot;vector&quot;]]</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code>#select a variable inside the data frame
 lst[[&quot;data.frame&quot;]]$Second</code></pre>
-<pre><code>## [1] FALSE FALSE  TRUE  TRUE FALSE</code></pre>
+<pre><code>## [1] TRUE TRUE TRUE TRUE TRUE</code></pre>
 <pre class="r"><code>#check its length
 length(lst)</code></pre>
 <pre><code>## [1] 2</code></pre>
@@ -666,11 +676,6 @@ class(myTableCSV)</code></pre>
 <div id="importing-and-exporting-vector-gis-data-in-r" class="section level3">
 <h3>Importing and Exporting Vector GIS Data in <code>R</code></h3>
 <p><em><strong>Credits for this section go to Jillian Deines, Michigan State University and Whalen Dillon, North Carolina State University</strong></em></p>
-<p>There are a number of <code>R</code> packages you can use to deal with spatial data. Let’s make sure to load them into R first.</p>
-<pre class="r"><code>library(sp)         # a dependency for most spatial packages (also loaded with rgdal)
-library(rgdal)      # R bindings for the Geospatial Data Abstraction Library    
-library(maptools)   # for the 'readShapeSpatial' example
-library(latticeExtra)</code></pre>
 <p>Now let’s read in shapefiles. Two primary functions exist to read in .shp files:</p>
 <ul>
 <li><code>readShapeSpatial</code> in package <code>maptools</code> doesn’t read projection information; need to set manually</li>
@@ -1030,9 +1035,6 @@ writeOGR(obj = juos, dsn = 'data/outData', layer = 'juos_pts_wgs84',
 <div id="importing-and-exporting-raster-gis-data-in-r" class="section level3">
 <h3>Importing and Exporting Raster GIS Data in <code>R</code></h3>
 <p>The primary package for raster work is conveniently named <code>raster</code>.</p>
-<pre class="r"><code>library(rgdal)        # R bindings for the Geospatial Data Abstraction Library
-library(raster)       # workhorse raster package
-library(latticeExtra) # for add-on functionality to the spplot function</code></pre>
 <div id="load-a-raster" class="section level4">
 <h4>Load a Raster</h4>
 <p>The <code>raster</code> function in the raster package is quite flexible and can be used to read and write the following filetypes (type ‘?writeFormats’ at the command line for more information via the help file). The raster call works largely the same for all of these filetypes; here we will load a 1 km elevation file in HFA/ERDAS Imagine format (.img), “elev_1k_wgs.img”, from the ‘data’ folder.</p>

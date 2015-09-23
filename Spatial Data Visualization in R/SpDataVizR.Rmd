@@ -34,6 +34,38 @@ Here, we'll use the `setwd` function to tell R where the module 1 folder is loca
 if (!file.exists("./data/figures")) dir.create(file.path(getwd(),"./data/figures"))
 ```
 
+## R Packages Needed
+
+Make sure you have these packages installed (use install.packages() function in R) or some scripts will not run. In order to use some of the useful functionalities that come with each package, we need to call them into our current R session using the library() or require() command.
+
+```{r load packages, message = FALSE, warning=FALSE}
+library(rgdal)   #for reading/writing geo files
+library(rgeos)   #for simplification
+library(plyr)
+library(leafletR)
+library(RColorBrewer)
+library(Quandl)
+library(reshape2)
+library(RgoogleMaps)
+library(plotGoogleMaps)
+library(loa)
+library(latticeExtra)
+library(ggmap)
+library(maptools)
+library(rjson)
+```
+
+This lecture will also touch on topics such as interactive web maps from R. This topic is fairly recent in the R community and package development is ongoing. In fact, you will not be able to find and install the following packages from the common CRAN repository. In order to download and install R packages that are under development on the author's Github repository, we need to install an R library called `devtools`, which allows to use the command install_github() for the desired packages. 
+
+```{r load devtools, message = FALSE}
+library(devtools)
+##The R packages rCharts and rMaps are not available on CRAN yet.
+##Run the following code to install from Github repo prior to loading the libraries:
+##install_github('ramnathv/rCharts')
+##install_github('ramnathv/rMaps')
+library(rCharts)
+library(rMaps)
+```
 
 #Spatial Data in R: Using R as a GIS
 
@@ -48,8 +80,6 @@ The three core functions within `RgoogleMap` are:
 * __PlotPolysOnStaticMap()__ adds polygon type data stored in a data structure defined by the package `PBSmapping` to an existing map in form.
 
 ```{r googlemap, fig.width=6, fig.height=6, message = FALSE, cache=TRUE}
-library(RgoogleMaps)
-
 #load dataset of interest with crime data in the SF area for 2013
 load("./data/incidents2013.rda")
 #list what dataset(s) has been loaded
@@ -87,9 +117,6 @@ legend("topright", col = c(colNonViolent,colViolent), pch=20,
 The `loa` package contains various plots and functions that make use of the lattice/trellis plotting framework. The plots (which include loaPlot, GoogleMap and trianglePlot) use panelPal, a function that extends `lattice` and `hexbin` package methods to automate plot subscripting and panel-to-panel and panel-to key synchronization/management. See __?loa__ for further details. Here, we will use GoogleMap(), which is basically a wrapper for `RgoogleMaps` function GetMap() and loa function loaPlot()
 
 ```{r googlemap2, fig.width=12, fig.height=6, message = FALSE, cache=TRUE}
-library(loa)
-library(latticeExtra)
-
 #let's save the time of the day in a separate variable and look at it
 temp <- incidents$TimeOfDay
 head(temp)
@@ -125,8 +152,6 @@ useOuterStrips(trellis.last.object())
 The `ggmap` package enables visualization by combining the spatial information of static maps from Google Maps, OpenStreetMap, Stamen Maps or CloudMade Maps with the layered grammar of graphics implementation of `ggplot2`. More information on this R package and tutorials from which the following section is extracted can be found [__HERE__](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf).
 
 ```{r ggmap, fig.width=6, fig.height=6, message=F, cache=TRUE}
-library(ggmap)
-
 #let's start simple by using the ggmap() function to simply pull down a map from the web
 #centered on a city of interest
 raleigh <- get_map(location = "raleigh")
@@ -167,8 +192,6 @@ The `plotGoogleMaps` package uses the power of Google's APIs to create intuitive
 We can start by looking at how to plot spatial point data. __NOTE__: the HTML files generated here, should open automatically in your default browser and saved to a local working directory folder.
 
 ```{r plotgmap, message=FALSE, cache=TRUE}
-library(plotGoogleMaps)
-
 #Load point data from a dataset included in the package
 data(meuse)
 #convert the data frame to a spatial data frame
@@ -187,9 +210,6 @@ m <- bubbleGoogleMaps(meuse, zcol='zinc', max.radius = 80, filename='myMap2.htm'
 We may be interested in plotting spatial polygon data (choropleth maps). We need to use the R package `RColorBrewer` to deal with color coding.
 
 ```{r plotgmap2, message=FALSE, cache=TRUE}
-library(RColorBrewer)
-library(maptools)
-
 #inside the maptools package we can find a shapefile with North Carolina counties 
 nc <- readShapeSpatial( system.file("shapes/sids.shp",
                         package="maptools")[1], proj4string=CRS("+proj=longlat
@@ -278,8 +298,6 @@ cuts <- round(quantile(deer_unit$tot_deer_elk, probs = seq(0, 1, 0.20), na.rm = 
 We are almost ready to create the final interactive web map. First, we want to choose a number of fields that we want displayed in a pop-up balloon inside our map. We may also want to define a graduated color style to plot our attribute of interest. For that, we will use the styleGrad() function of the `leafletR` package.
 
 ```{r leaflet4, message = FALSE}
-library(leafletR)
-
 #Choose fields to include in the popup
 popup <- c("UName", "UNum", "AREA_km2", "tot_deer_elk")
 #Graduated style symbology based on an attribute
@@ -322,7 +340,6 @@ head(tree_dat_2012)
 Now, we can create a new Leaflet map instance and set the plot extent based on our coordinates centroid.
 
 ```{r leaflet7, message=FALSE}
-library(rMaps)
 #create a new leaflet map instance
 Lmap <- Leaflet$new()
 #set the view and zoom to the desired study area. Let's center it on our mean lat-lon coordinates
@@ -334,8 +351,6 @@ Lmap$tileLayer(provider = "MapQuestOpen.OSM")
 Before generating the interactive web map, we need to convert our dataset to JSON format using the toJSONArray2() function.
 
 ```{r leaflet8, message=FALSE}
-library(rCharts)
-library(rjson)
 tree_dat <- toJSONArray2(na.omit(tree_dat_2012), json = F, names = F)
 #let's print out the first two elements of the JSON file
 cat(toJSON(tree_dat[1:2]), '\n')
@@ -366,8 +381,6 @@ Lmap
 The following tutorial is based on the [__rMaps__](http://rmaps.github.io/blog/posts/animated-choropleths/index.html) online tutorial used to create animated choropleths. The data selected are different from the original. The first step to creating any visualization is getting the data. Let us fetch time-series data on burglaries in the US, from [Quandl] (https://www.quandl.com/). 
 
 ```{r choro, message=FALSE, cache=TRUE}
-library(Quandl)
-
 #let's download the table referring to burglaries
 rbData = Quandl("FBI_UCR/USCRIME_TYPE_BURGLARIES")
 rbData[1:10, 1:5]
@@ -376,8 +389,6 @@ rbData[1:10, 1:5]
 The dataset is in the wide-form. The first step is to convert it into the long-form (more convenient for visualization purposes). Moreover, we remove data for the US as a whole, as well as for DC, so that the crime rates across entities (states) are comparable
 
 ```{r choro2, message=FALSE}
-library(reshape2)
-
 #let's use the melt() function to restructure the data in wide form
 datm <- melt(rbData, 'Year', 
   variable.name = 'State',
@@ -412,8 +423,6 @@ fills = setNames(
 We need to convert the data frame into a list of lists. We will use Hadley's `plyr` package to simplify the code.
 
 ```{r choro5, message=FALSE}
-library(plyr)
-
 dat2 <- dlply(na.omit(datm2), "Year", function(x){
   y = toJSONArray(x, json = F)
   names(y) = lapply(y, '[[', 'State')

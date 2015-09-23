@@ -32,6 +32,18 @@ opts_chunk$set(cache=TRUE, fig.path='./data/figures/')
 #setwd('C:/Users/username/Documents/GIS610_SpatialR/Introduction to R in GIS')   # for Windows users	
 #setwd("~/Documents/GIS610_SpatialR/Introduction to R in GIS")                   # ~ for Mac users	
 # 	
+# 	
+# ## R Packages Needed	
+# 	
+# Make sure you have these packages installed (use install.packages() function in R) or some scripts will not run. In order to use some of the useful functionalities that come with each package, we need to call them into our current R session using the library() or require() command.	
+# 	
+# 	
+library(rgdal)      # R bindings for the Geospatial Data Abstraction Library    	
+library(maptools)   # for the 'readShapeSpatial' example	
+library(latticeExtra) # for add-on functionality to the spplot function	
+library(raster)       # workhorse raster package	
+# 	
+# 	
 # ###Getting Help	
 # 	
 # `R` offers a comprehensive built-in help system. At the program's command prompt you can use any of the following:	
@@ -425,15 +437,6 @@ str(myTableCSV)
 # 	
 # *__Credits for this section go to Jillian Deines, Michigan State University and Whalen Dillon, North Carolina State University__*	
 # 	
-# There are a number of `R` packages you can use to deal with spatial data. Let's make sure to load them into R first.	
-# 	
-# 	
-library(sp)         # a dependency for most spatial packages (also loaded with rgdal)	
-library(rgdal)      # R bindings for the Geospatial Data Abstraction Library    	
-library(maptools)   # for the 'readShapeSpatial' example	
-library(latticeExtra)	
-# 	
-# 	
 # Now let's read in shapefiles. Two primary functions exist to read in .shp files: 	
 # 	
 # * `readShapeSpatial` in package `maptools` doesn't read projection information; need to set manually	
@@ -614,12 +617,6 @@ writeOGR(obj = juos, dsn = 'data/outData', layer = 'juos_pts_wgs84',
 # ###Importing and Exporting Raster GIS Data in `R`	
 # 	
 # The primary package for raster work is conveniently named `raster`.	
-# 	
-# 	
-library(rgdal)        # R bindings for the Geospatial Data Abstraction Library	
-library(raster)       # workhorse raster package	
-library(latticeExtra) # for add-on functionality to the spplot function	
-# 	
 # 	
 # ####Load a Raster	
 # 	
