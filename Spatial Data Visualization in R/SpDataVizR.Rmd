@@ -53,6 +53,7 @@ library(latticeExtra)
 library(ggmap)
 library(maptools)
 library(rjson)
+library(googleVis)
 ```
 
 This lecture will also touch on topics such as interactive web maps from R. This topic is fairly recent in the R community and package development is ongoing. In fact, you will not be able to find and install the following packages from the common CRAN repository. In order to download and install R packages that are under development on the author's Github repository, we need to install an R library called `devtools`, which allows to use the command install_github() for the desired packages. 
